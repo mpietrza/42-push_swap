@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 18:08:53 by mpietrza          #+#    #+#             */
-/*   Updated: 2024/01/25 19:01:27 by mpietrza         ###   ########.fr       */
+/*   Updated: 2024/01/30 18:04:12 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,30 @@ bool	ft_init_data(t_list *data)
 	return (true);
 }
 
+int	ft_atoi_ps(const char *s, t_list *d)
+{
+	int	i;
+	int	sign;
+	int	nbr;
+
+	i = 0;
+	sign = 1;
+	nbr = 0;
+	while (s[i] == ' ' || s[i] == '\t' || s[i] == '\n' || s[i] == '\v'
+			|| s[i] == '\f' || s[i] == '\r' || s[i] == '+' || s[i] == '-')
+	{
+		if (s[i] = '-')
+			sign = -1;
+		i++;
+	}
+	while (s[i] >= '0' && s[i] <= '9')
+	{
+		nbr = nbr * 10 + s[i] - '0';
+		i++;
+	}
+	return (sign * nbr);
+}
+
 bool	ft_init_data_args(t_list *data, int argc, char **argv)
 {
 	int	i;
@@ -69,8 +93,14 @@ bool	ft_init_data_args(t_list *data, int argc, char **argv)
 	{
 		if (ft_is_str_num(argv[i] == false))
 			return (false);
-		data->sa[i] = ft_atoi(argv[i])
-			//have to figure out error handling!!
+		data->sa[i - 1] = ft_atoi_ps(argv[i], data);
+		if (d->atoi_error == true)
+			return (false);
+		data->sp[i - 1] = ft_atoi_ps(argv[i], data);
+		i++;
+	}
+	return (true);
+}
 
 bool	ft_check_argv(int argc, char **argv)
 {

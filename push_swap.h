@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 15:16:23 by mpietrza          #+#    #+#             */
-/*   Updated: 2024/01/25 19:01:43 by mpietrza         ###   ########.fr       */
+/*   Updated: 2024/01/30 18:04:17 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct s_list
 	int	control;
 	int	cont;
 	int	error;
-	int atoi_error;
+	bool atoi_error;
 	int	j_atoi;
 	int	size_block;
 	int	arg_max;
