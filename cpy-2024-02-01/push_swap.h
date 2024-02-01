@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 15:16:23 by mpietrza          #+#    #+#             */
-/*   Updated: 2024/02/01 17:48:48 by mpietrza         ###   ########.fr       */
+/*   Updated: 2024/02/01 14:47:42 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 /*struct - stack*/
 typedef struct	s_stack
 {
-	char			name;
 	long			nbr;
 	long			index;
 	struct s_stack	*prev;
@@ -32,6 +31,8 @@ typedef struct	s_stack
 /*struct - for data transfer thoughout the program*/
 typedef struct	s_list
 {
+	t_stack	*a;
+	t_stack	*b;
 	int		num_of_args;
 	int		percentage;
 	int		lsp;
