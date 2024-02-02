@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   oprs_push.c                                        :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpietrza <mpietrza@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/01 16:37:33 by mpietrza          #+#    #+#             */
-/*   Updated: 2024/02/02 13:56:39 by mpietrza         ###   ########.fr       */
+/*   Created: 2023/06/12 17:07:46 by mpietrza          #+#    #+#             */
+/*   Updated: 2023/07/12 12:48:18 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "libft.h"
 
-bool	ft_push(t_stack **stack_1, t_stack **stack_2)
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	t_stack	*tmp;
+	size_t	len;
+	size_t	i;
 
-	if (!*stack_2)
-		return (false);
-	tmp = *stack_1;
-	*stack_1 = *stack_2;
-	*stack_2 = (*stack_2)->next;
-	(*stack_1)->next = tmp;
-	if (*stack_1)
-		ft_printf("s%c\n", (*stack_1)->name);
-	return (true);
+	if (s == NULL || f == NULL)
+		return ;
+	len = ft_strlen(s);
+	i = 0;
+	while (i < len)
+	{
+		f(i, s + i);
+		i++;
+	}
 }

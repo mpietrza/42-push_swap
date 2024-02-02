@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   oprs_push.c                                        :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpietrza <mpietrza@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/01 16:37:33 by mpietrza          #+#    #+#             */
-/*   Updated: 2024/02/02 13:56:39 by mpietrza         ###   ########.fr       */
+/*   Created: 2023/05/29 19:36:59 by mpietrza          #+#    #+#             */
+/*   Updated: 2023/06/14 14:26:09 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "libft.h"
 
-bool	ft_push(t_stack **stack_1, t_stack **stack_2)
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	t_stack	*tmp;
+	size_t	i;
+	size_t	needle_len;
 
-	if (!*stack_2)
-		return (false);
-	tmp = *stack_1;
-	*stack_1 = *stack_2;
-	*stack_2 = (*stack_2)->next;
-	(*stack_1)->next = tmp;
-	if (*stack_1)
-		ft_printf("s%c\n", (*stack_1)->name);
-	return (true);
+	needle_len = ft_strlen(needle);
+	i = 0;
+	if (needle_len == 0)
+		return ((char *)haystack);
+	while (i < len && haystack[i] != '\0' && len - i >= needle_len)
+	{
+		if (ft_strncmp(&haystack[i], needle, needle_len) == 0)
+			return ((char *)&haystack[i]);
+		i++;
+	}
+	return (NULL);
 }

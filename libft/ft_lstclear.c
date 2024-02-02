@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   oprs_push.c                                        :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpietrza <mpietrza@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/01 16:37:33 by mpietrza          #+#    #+#             */
-/*   Updated: 2024/02/02 13:56:39 by mpietrza         ###   ########.fr       */
+/*   Created: 2023/07/17 18:46:12 by mpietrza          #+#    #+#             */
+/*   Updated: 2023/07/19 18:11:19 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "libft.h"
 
-bool	ft_push(t_stack **stack_1, t_stack **stack_2)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	t_stack	*tmp;
+	t_list	*tmp;
 
-	if (!*stack_2)
-		return (false);
-	tmp = *stack_1;
-	*stack_1 = *stack_2;
-	*stack_2 = (*stack_2)->next;
-	(*stack_1)->next = tmp;
-	if (*stack_1)
-		ft_printf("s%c\n", (*stack_1)->name);
-	return (true);
+	if (!del || !lst || !*lst)
+		return ;
+	while (*lst)
+	{
+		tmp = (*lst)->next;
+		ft_lstdelone(*lst, del);
+		*lst = tmp;
+	}
 }

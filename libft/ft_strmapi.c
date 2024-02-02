@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   oprs_push.c                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpietrza <mpietrza@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/01 16:37:33 by mpietrza          #+#    #+#             */
-/*   Updated: 2024/02/02 13:56:39 by mpietrza         ###   ########.fr       */
+/*   Created: 2023/06/08 16:54:09 by mpietrza          #+#    #+#             */
+/*   Updated: 2023/06/14 14:24:10 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "libft.h"
 
-bool	ft_push(t_stack **stack_1, t_stack **stack_2)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	t_stack	*tmp;
+	size_t	len;
+	size_t	i;
+	char	*result;
 
-	if (!*stack_2)
-		return (false);
-	tmp = *stack_1;
-	*stack_1 = *stack_2;
-	*stack_2 = (*stack_2)->next;
-	(*stack_1)->next = tmp;
-	if (*stack_1)
-		ft_printf("s%c\n", (*stack_1)->name);
-	return (true);
+	if (s == NULL || f == NULL)
+		return (NULL);
+	len = ft_strlen(s);
+	result = (char *)malloc(sizeof(char) * (len + 1));
+	if (result == NULL)
+		return (NULL);
+	i = 0;
+	while (i < len)
+	{
+		result[i] = f(i, s[i]);
+		i++;
+	}
+	result[len] = '\0';
+	return (result);
 }

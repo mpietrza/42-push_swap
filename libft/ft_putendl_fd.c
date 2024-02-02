@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   oprs_push.c                                        :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpietrza <mpietrza@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/01 16:37:33 by mpietrza          #+#    #+#             */
-/*   Updated: 2024/02/02 13:56:39 by mpietrza         ###   ########.fr       */
+/*   Created: 2023/06/13 15:37:34 by mpietrza          #+#    #+#             */
+/*   Updated: 2023/06/14 14:09:52 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "libft.h"
 
-bool	ft_push(t_stack **stack_1, t_stack **stack_2)
+void	ft_putendl_fd(char *s, int fd)
 {
-	t_stack	*tmp;
-
-	if (!*stack_2)
-		return (false);
-	tmp = *stack_1;
-	*stack_1 = *stack_2;
-	*stack_2 = (*stack_2)->next;
-	(*stack_1)->next = tmp;
-	if (*stack_1)
-		ft_printf("s%c\n", (*stack_1)->name);
-	return (true);
+	write(fd, s, ft_strlen(s));
+	write(fd, "\n", 1);
 }

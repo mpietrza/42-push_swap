@@ -1,28 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   oprs_push.c                                        :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpietrza <mpietrza@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/01 16:37:33 by mpietrza          #+#    #+#             */
-/*   Updated: 2024/02/02 13:56:39 by mpietrza         ###   ########.fr       */
+/*   Created: 2023/05/11 18:18:02 by mpietrza          #+#    #+#             */
+/*   Updated: 2023/06/22 15:45:12 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "libft.h"
 
-bool	ft_push(t_stack **stack_1, t_stack **stack_2)
+char	*ft_strrchr(const char *s, int c)
 {
-	t_stack	*tmp;
+	int		i;
+	char	*ptr;
+	char	ch;
 
-	if (!*stack_2)
-		return (false);
-	tmp = *stack_1;
-	*stack_1 = *stack_2;
-	*stack_2 = (*stack_2)->next;
-	(*stack_1)->next = tmp;
-	if (*stack_1)
-		ft_printf("s%c\n", (*stack_1)->name);
-	return (true);
+	ch = (char)c;
+	i = ft_strlen(s);
+	ptr = NULL;
+	while (i >= 0)
+	{
+		if (s[i] == ch)
+		{
+			ptr = (char *) &s[i];
+			return (ptr);
+		}
+		i--;
+	}
+	if (ch == '\0')
+	{
+		ptr = (char *) &s[i];
+		return (ptr);
+	}
+	return (NULL);
 }

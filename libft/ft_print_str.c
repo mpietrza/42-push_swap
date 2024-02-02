@@ -1,28 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   oprs_push.c                                        :+:      :+:    :+:   */
+/*   ft_print_str.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpietrza <mpietrza@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/01 16:37:33 by mpietrza          #+#    #+#             */
-/*   Updated: 2024/02/02 13:56:39 by mpietrza         ###   ########.fr       */
+/*   Created: 2023/07/25 14:23:19 by mpietrza          #+#    #+#             */
+/*   Updated: 2023/12/13 16:26:27 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "ft_printf.h"
+#include "libft.h"
+#include "unistd.h"
 
-bool	ft_push(t_stack **stack_1, t_stack **stack_2)
+int	ft_print_str(char *s)
 {
-	t_stack	*tmp;
+	int		ret;
+	size_t	len;
+	char	*null;
 
-	if (!*stack_2)
-		return (false);
-	tmp = *stack_1;
-	*stack_1 = *stack_2;
-	*stack_2 = (*stack_2)->next;
-	(*stack_1)->next = tmp;
-	if (*stack_1)
-		ft_printf("s%c\n", (*stack_1)->name);
-	return (true);
+	null = "(null)";
+	ret = 0;
+	if (!s)
+	{
+		ret = write(1, null, 6);
+		if (ret != 6)
+			return (-1);
+	}
+	else if (!*s)
+		return (0);
+	else
+	{
+		len = (int)ft_strlen(s);
+		ret = write(1, s, len);
+		if (ret == -1)
+			return (-1);
+	}
+	return (ret);
 }

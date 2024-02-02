@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:35:26 by mpietrza          #+#    #+#             */
-/*   Updated: 2024/02/01 17:36:32 by mpietrza         ###   ########.fr       */
+/*   Updated: 2024/02/02 14:28:52 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,6 @@ bool	ft_swap(t_stack **stack)
 		return (false);
 	if (*stack)
 		ft_printf("s%c\n", (*stack)->name);
-	/*
-	{
-		write(1, "s", 1);
-		write(1, &((*stack)->name), 1);
-		write(1, "\n", 1);
-	}*/
 	return (true);
 }
 

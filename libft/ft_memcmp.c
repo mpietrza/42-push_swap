@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   oprs_push.c                                        :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpietrza <mpietrza@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/01 16:37:33 by mpietrza          #+#    #+#             */
-/*   Updated: 2024/02/02 13:56:39 by mpietrza         ###   ########.fr       */
+/*   Created: 2023/05/25 17:55:15 by mpietrza          #+#    #+#             */
+/*   Updated: 2023/07/12 12:47:32 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "libft.h"
 
-bool	ft_push(t_stack **stack_1, t_stack **stack_2)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	t_stack	*tmp;
+	unsigned const char	*ch1;
+	unsigned const char	*ch2;
+	size_t				i;
+	size_t				result;
 
-	if (!*stack_2)
-		return (false);
-	tmp = *stack_1;
-	*stack_1 = *stack_2;
-	*stack_2 = (*stack_2)->next;
-	(*stack_1)->next = tmp;
-	if (*stack_1)
-		ft_printf("s%c\n", (*stack_1)->name);
-	return (true);
+	ch1 = s1;
+	ch2 = s2;
+	i = 0;
+	while (i < n)
+	{
+		result = ch1[i] - ch2[i];
+		if (result != 0)
+			return (result);
+		i++;
+	}
+	return (0);
 }

@@ -1,28 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   oprs_push.c                                        :+:      :+:    :+:   */
+/*   stack_utils2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpietrza <mpietrza@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/01 16:37:33 by mpietrza          #+#    #+#             */
-/*   Updated: 2024/02/02 13:56:39 by mpietrza         ###   ########.fr       */
+/*   Created: 2024/02/02 14:25:47 by mpietrza          #+#    #+#             */
+/*   Updated: 2024/02/02 14:50:55 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-bool	ft_push(t_stack **stack_1, t_stack **stack_2)
+int	ft_elem_min(t_stack *stack)
 {
-	t_stack	*tmp;
+	int	i;
 
-	if (!*stack_2)
-		return (false);
-	tmp = *stack_1;
-	*stack_1 = *stack_2;
-	*stack_2 = (*stack_2)->next;
-	(*stack_1)->next = tmp;
-	if (*stack_1)
-		ft_printf("s%c\n", (*stack_1)->name);
-	return (true);
+	i = stack->nbr;
+	while (stack)
+	{
+		if (stack->nbr < i)
+			i = a->nbr;
+		stack = stack->next;
+	}
+	return (i);
+}
+
+int	ft_elem_max(t_stack *stack)
+{
+	int	i;
+
+	i = stack->nbr;
+	while (stack)
+	{
+		if (stack->nbr > i)
+			i = stack->nbr;
+		stack = stack->next;
+	}
+	return (i);
 }
