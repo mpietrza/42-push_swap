@@ -30,7 +30,7 @@ typedef struct	s_stack
 }					t_stack;
 
 /*struct - for data transfer thoughout the program*/
-typedef struct	s_list
+typedef struct	s_data
 {
 	int		num_of_args;
 	int		percentage;
@@ -38,12 +38,12 @@ typedef struct	s_list
 	int		control;
 	int		cont;
 	int		error;
-	bool 	atoi_error;
+	bool 		atoi_error;
 	int		j_atoi;
 	int		size_block;
 	int		arg_max;
 	int		arguments;
-}				t_list;
+}				t_data;
 
 
 

@@ -2,14 +2,14 @@
 
 bool	ft_is_stack_ascending(t_stack *stack)
 {
-	int	nbr;
+	int	prev_nbr;
 
-	nbr = stack->nbr;
+	prev_nbr = stack->nbr;
 	while (stack)
 	{
-		if (nbr > stack->nbr)
+		if (prev_nbr > stack->nbr)
 			return (false);
-		nbr = stack->nbr;
+		prev_nbr = stack->nbr;
 		stack = stack->next;
 	}
 	return (true);

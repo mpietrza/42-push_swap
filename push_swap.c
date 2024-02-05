@@ -90,62 +90,40 @@ bool	ft_check_argv(int argc, char **argv)
 	return (true);
 }
 
-bool	ft_data_parse(t_stack **a, char **argv)
+bool	ft_data_parse(t_stack **a, int argc, char **argv, t_list *data)
 {
 	int	i;
-	int	num;
+	long	num;
 
 	i = 1;
+	*a == NULL;
 	while (argv[i])
 	{
 		num = ft_atoi_ps(argv[i], data);
-		ft_stack_add_bottom(&a, ft_stack_
-}
-
-
-bool	ft_check_order(t_list *data)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (i < data->num_of_args - 1)
-	{
-		if (data->sa[i] < data->sa[i + 1])
-			j++;
+		if (data->atoi_error == true)
+			return (false)
+		ft_stack_add_bottom(a, ft_stack_new('a', num));
 		i++;
 	}
-	if (i == j)
-		return (false);
-	return (true);
+	if (i == argc)
+		return (true);
+	return (false);
 }
 
-static bool	ft_duplic_check_core(t_list *d, int nbr, int i)
+bool	ft_duplicate_check(t_stack *a)
 {
-	int	j;
+	t_stack	*temp;
 
-	j = 0;
-	while (j < i)
+	while (a)
 	{
-		if (data->sa[j] == nbr)
-			return (false);
-		i++;
-	}
-	return (true);
-}
-
-bool	ft_duplicate_check(t_list *d)
-{
-	int	i;
-
-	i = 0;
-	while (i <= data->sia - 1)
-	{
-		if (ft_duplicate_check_core(data, data->sa[i], i) == true)
-			i++;
-		else
-			return (false);
+		temp = a->next;
+		while (temp)
+		{
+			if (a->nbr == temp->nbr)
+				return (false);
+			temp = temp->next;
+		}
+		a = a->next;
 	}
 	return (true);
 }
@@ -166,14 +144,11 @@ bool	ft_range_bracket(int argc, t_list *data)
 		return (false)
 }
 
-
-
 void	ft_error_exit(const char *error_message)
 {
 	perror(error_message);
 	exit(EXIT_FAILURE);
 }
-
 
 void	ft_free_and_exit(t_stack **a, t_stack **b, const char *error_message)
 {
@@ -195,30 +170,25 @@ void	ft_exit_succesful(t_stack **a, t_stack **b)
 
 int	main(int argc, char **argv)
 {
-	t_list	*data;
+	t_data	*data;
+	t_stack	**a;
+	t_stack	**b;
 
 	if (argc == 1 || ft_check_argv(argc, argv) == false)
 		return (1);
-	
+	data = calloc(1, sizeof(t_data));
 	if (!data)
 		ft_error_exit("Error\nMemory allocation failure!\n");
-//		return (1);
-	if (ft_init_data(data) == false)
-	{
-		ft_free_and_exit(data, "Error\nMemory allocation failure!\n");
-//		return (1);
-	}
+	if (ft_stack_init(&b, b, 0, 0) == false)
+		ft_free_and_exit(a, b, data, "Error\nMemory allocation failure!\n");
+	if (ft_data_parse(&a, argc, argv) == false)
+		ft_free_and_exit(a, b, data, "Error\nMemory allocation failure!\n");
 	if (ft_init_data_args(data, argc, argv) == false)
-	{
-		ft_free_and_exit(data, "Error\nMemory allocation failure!\n");
-//		return (1);
-	}
-	if (ft_check_order(data) == false)
-		ft_free_and_exit(data, "Error\nWrong order of data on stack A!\n");
-//		return (1);
-	if (ft_range_bracket(argc, data) == false)
-		ft_free_and_exit(data, "Error\nData input out of range!\n");
-//		return (1);
+		ft_free_and_exit(a, b, data, "Error\nMemory allocation failure!\n");
+	if (ft_is_stack_ascending(stack == false)
+		ft_free_and_exit(a,b, data, "Error\nWrong order of data on stack A!\n");
+	if (ft_range_bracket(argc, a, b, data) == false)
+		ft_free_and_exit(a, b, data, "Error\nData input out of range!\n");
 	ft_exit_succesful(data);
 	return (0);
 }
