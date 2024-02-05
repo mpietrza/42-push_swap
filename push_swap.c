@@ -30,33 +30,16 @@ bool	ft_is_str_num(char *s)
 	return (false);
 }
 
-static void	ft_init_data_free(t_list *data)
+bool	ft_stack_init(t_stack **stack, char name, long nbr, long index)
 {
-	if (data)
-	{
-		if (data->sa)
-			free(data->sa);
-		if (data->sb)
-			free(data->sb);
-		if (data->sp)
-			free(data->sp);
-		free(data);
-	}
-}
-
-bool	ft_init_data(t_list *data)
-{
-	data->sa = ft_calloc(data->num_of_args, sizeof(int));
-	data->sb = ft_calloc(data->num_of_args, sizeof(int));
-	data->sp = ft_calloc(data->num_of_args, sizeof(int));
-	if (!data->sa || !data->sb || !data->sp)
-	{
-		ft_init_data_free(data);
+	*stack = ft_calloc(1, sizeof(stack));
+	if (!*stack)
 		return (false);
-	}
-	data->sia = data->num_of_args;
-	data->sib = 0;
-	data->sip = data->num_of_args;
+	(*stack)->name = name;
+	(*stack)->nbr = nbr;
+	(*stack)->index = index;
+	(*stack)->prev = NULL;
+	(*stack)->next = NULL;
 	return (true);
 }
 
@@ -94,24 +77,6 @@ int	ft_atoi_ps(const char *s, t_list *data)
 	return (sign * nbr);
 }
 
-bool	ft_init_data_args(t_list *data, int argc, char **argv)
-{
-	int	i;
-
-	i = 1;
-	while (i < argc)
-	{
-		if (ft_is_str_num(argv[i] == false))
-			return (false);
-		data->sa[i - 1] = ft_atoi_ps(argv[i], data);
-		if (data->atoi_error == true)
-			return (false);
-		data->sp[i - 1] = ft_atoi_ps(argv[i], data);
-		i++;
-	}
-	return (true);
-}
-
 bool	ft_check_argv(int argc, char **argv)
 {
 	int	i;
@@ -124,6 +89,19 @@ bool	ft_check_argv(int argc, char **argv)
 	}
 	return (true);
 }
+
+bool	ft_data_parse(t_stack **a, char **argv)
+{
+	int	i;
+	int	num;
+
+	i = 1;
+	while (argv[i])
+	{
+		num = ft_atoi_ps(argv[i], data);
+		ft_stack_add_bottom(&a, ft_stack_
+}
+
 
 bool	ft_check_order(t_list *data)
 {
@@ -196,45 +174,22 @@ void	ft_error_exit(const char *error_message)
 	exit(EXIT_FAILURE);
 }
 
-void	ft_free_data(t_list *data)
-{
-	if (data)
-	{
-		if (data->sa)
-		{
-			free(data->sa);
-			if (data->sa)
-				data->sa = NULL;
-		}
-		if (data->sb)
-		{
-			free(data->sb);
-			if (data->sb)
-				data->sb = NULL;
-		}
-		if (data->sp)
-		{
-			free(data->sp);
-			if (data->sp)
-				data->sp = NULL;
-		}
-		free(data);
-		if (data)
-			data = NULL;
-	}
-}
 
-void	ft_free_and_exit(t_data *data, const char *error_message)
+void	ft_free_and_exit(t_stack **a, t_stack **b, const char *error_message)
 {
-	if (data)
-		ft_free_data(data);
+	if (*a)
+		ft_stack_free(a);
+	if (*b)
+		ft_stack_free(b);
 	ft_error_exit(error_message);
 }
 
-void	ft_exit_succesful(t_data *data)
+void	ft_exit_succesful(t_stack **a, t_stack **b)
 	{
-	if (data)
-		ft_free_data(data);
+	if (*a)
+		ft_stack_free(a);
+	if (*b)
+		ft_stack_free(b);
 	exit(EXIT_SUCCESS);
 }
 
@@ -244,7 +199,7 @@ int	main(int argc, char **argv)
 
 	if (argc == 1 || ft_check_argv(argc, argv) == false)
 		return (1);
-	data = ft_calloc(1, sizeof(t_list));
+	
 	if (!data)
 		ft_error_exit("Error\nMemory allocation failure!\n");
 //		return (1);

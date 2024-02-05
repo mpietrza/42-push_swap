@@ -12,6 +12,18 @@
 
 #include "../include/so_long.h"
 
+t_stack	*ft_stack_new(char name, long nbr)
+{
+	t_stack	*new;
+
+	new = calloc(1, sizeof(t_stack));
+	if (!new)
+		return (NULL);
+	new->name = name;
+	new->nbr = nbr;
+	new->next = NULL;
+}
+
 int	ft_stack_size(t_stack *stack)
 {
 	int	i;
@@ -46,7 +58,7 @@ void	ft_stack_add_top(t_stack **stack, t_stack *new)
 	}
 }
 
-void	ft_stack_add_bottom(t_stack **stack; t_stack *new)
+void	ft_stack_add_bottom(t_stack **stack, t_stack *new)
 {
 	if (*stack)
 		ft_stack_last(*stack)->next = new;
