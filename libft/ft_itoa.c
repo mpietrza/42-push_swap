@@ -12,7 +12,7 @@
 #include <stdlib.h>
 #include "libft.h"
 
-size_t static	int_len(int n)
+static size_t	int_len(int n)
 {
 	size_t	len;
 
@@ -34,7 +34,7 @@ size_t static	int_len(int n)
 	return (len);
 }
 
-char static	pos_neg_0(long int ln)
+static char	pos_neg_0(long int ln)
 {
 	char	symbol;
 

@@ -63,7 +63,7 @@ bool	ft_ss(t_stack **a, t_stack **b);
 bool	ft_check_argv(int argc, char **argv);
 bool	ft_range_bracket(int argc, t_stack **a);
 void	ft_range_3(t_stack **a);
-bool	ft_stack_init(t_stack **stack, char name, long nbr, long index);
+bool	ft_stack_init(t_stack **stack, char name, long nbr);
 t_stack	*ft_stack_new(char name, long nbr);
 t_stack	*ft_stack_last(t_stack *stack);
 void	ft_stack_add_top(t_stack **stack, t_stack *new);

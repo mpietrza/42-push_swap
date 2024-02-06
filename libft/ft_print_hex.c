@@ -15,10 +15,10 @@
 
 static int	char_conv(unsigned int num, const char format)
 {
-	int		ret;
+//	int		ret;
 	char	c;
 
-	ret = 0;
+//	ret = 0;
 	if (format == 'x')
 		c = num - 10 + 'a';
 	else if (format == 'X')
@@ -64,8 +64,8 @@ int	ft_print_hex(unsigned int num, const char format)
 	ret = 0;
 	if (num == 0)
 		i = write(1, "0", 1);
-	else if (num < 0)
-		return (-1);
+//	else if (num < 0)
+//		return (-1);
 	else
 		i = ft_put_hex(num, format);
 	if (i < 0)

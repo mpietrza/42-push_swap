@@ -12,14 +12,14 @@
 
 #include "../include/push_swap.h"
 
-bool	ft_stack_init(t_stack **stack, char name, long nbr, long index)
+bool	ft_stack_init(t_stack **stack, char name, long nbr)
 {
-	*stack = ft_calloc(1, sizeof(stack));
+	*stack = ft_calloc(1, sizeof(t_stack));
 	if (!*stack)
 		return (false);
 	(*stack)->name = name;
 	(*stack)->nbr = nbr;
-	(*stack)->index = index;
+	(*stack)->index = 0;
 	(*stack)->prev = NULL;
 	(*stack)->next = NULL;
 	return (true);

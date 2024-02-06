@@ -53,7 +53,12 @@ int	main(int argc, char **argv)
 	data = calloc(1, sizeof(t_data));
 	if (!data)
 		ft_error_exit("Error\nMemory allocation failure!\n");
-	if (ft_stack_init(b, 'b', 0, 0) == false)
+	if (ft_stack_init(b, 'b', 0) == false)
+	{
+		free(data);
+		ft_error_exit("Error\nMemory allocation failure!\n");
+	}
+	if (ft_stack_init(a, 'a', argc) == false)
 	{
 		free(data);
 		ft_error_exit("Error\nMemory allocation failure!\n");
