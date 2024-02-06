@@ -6,17 +6,17 @@
 #    By: mpietrza <mpietrza@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/18 14:21:04 by mpietrza          #+#    #+#              #
-#    Updated: 2024/02/01 12:57:33 by mpietrza         ###   ########.fr        #
+#    Updated: 2024/02/06 17:11:41 by mpietrza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= so_long
+NAME		= push_swap 
 DIR_LIBFT	= ./libft/
 DIR_SRCS	= ./srcs/
 DIR_OBJS	= ./objs/
 DIR_INCL	= ./include/
 LIBFT		= $(DIR_LIBFT)libft.a
-INCLUDE		= so_long.h
+INCLUDE		= push_swap.h
 CC			= cc
 CFLAGS		= -Wall -Wextra -Werror #-fsanitize=address -g
 RM			= rm -f
@@ -34,10 +34,18 @@ W = "\033[37m"
 
 #SOURCES
 
-SRC			= cleanup.c \
-			  exit.c \
-			  initialize.c \
-			  push_swap.c \
+SRC			= data_parse_preparation.c \
+			  exit_free.c \
+			  oprs_push.c \
+			  oprs_r_rotate.c \
+			  oprs_rotate.c \
+			  oprs_swap.c \
+		  	  push_swap.c \
+  			  range_3.c \
+			  stack_utils.c \
+			  stack_utils2.c \
+			  stack_utils3.c \
+			  stack_utils4.c \
 			  utils.c
 			 
 SRCS		= $(addprefix $(DIR_SRCS), $(SRC))
@@ -52,7 +60,7 @@ all:	$(DIR_OBJS) $(NAME)
 
 $(DIR_OBJS)%.o : $(DIR_SRCS)%.c
 	@echo $(B)Compiling [$<]... $(DEF_COLOR)
-	$(CC) $(CFLAGS) -MMD -MP -Imlx -c -o $@ $<
+	$(CC) $(CFLAGS) -MMD -MP -c -o $@ $<
 
 utils:
 	@echo $(B)

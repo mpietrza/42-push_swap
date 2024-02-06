@@ -6,11 +6,24 @@
 /*   By: mpietrza <mpietrza@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 13:52:54 by mpietrza          #+#    #+#             */
-/*   Updated: 2024/02/02 14:25:31 by mpietrza         ###   ########.fr       */
+/*   Updated: 2024/02/06 17:04:19 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "../include/push_swap.h"
+
+bool	ft_stack_init(t_stack **stack, char name, long nbr, long index)
+{
+	*stack = ft_calloc(1, sizeof(stack));
+	if (!*stack)
+		return (false);
+	(*stack)->name = name;
+	(*stack)->nbr = nbr;
+	(*stack)->index = index;
+	(*stack)->prev = NULL;
+	(*stack)->next = NULL;
+	return (true);
+}
 
 t_stack	*ft_stack_new(char name, long nbr)
 {
@@ -22,21 +35,7 @@ t_stack	*ft_stack_new(char name, long nbr)
 	new->name = name;
 	new->nbr = nbr;
 	new->next = NULL;
-}
-
-int	ft_stack_size(t_stack *stack)
-{
-	int	i;
-
-	if (!stack)
-		return (0);
-	i = 1;
-	while (stack->next)
-	{
-		stack = stack->next;
-		i++;
-	}
-	return (i);
+	return (new);
 }
 
 t_stack	*ft_stack_last(t_stack *stack)
@@ -65,4 +64,3 @@ void	ft_stack_add_bottom(t_stack **stack, t_stack *new)
 	else
 		*stack = new;
 }
-

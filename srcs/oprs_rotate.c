@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 16:56:04 by mpietrza          #+#    #+#             */
-/*   Updated: 2024/02/02 13:51:17 by mpietrza         ###   ########.fr       */
+/*   Updated: 2024/02/06 15:59:46 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static bool	ft_rotate_core(t_stack **stack)
 	if (!stack || !(*stack)->next)
 		return (false);
 	tmp = *stack;
-	*stack = ft_stack_lstlast(*stack);
+	*stack = ft_stack_last(*stack);
 	(*stack)->next = tmp;
 	*stack = tmp->next;
 	tmp->next = NULL;
