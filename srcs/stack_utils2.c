@@ -11,31 +11,39 @@
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
-
+ 
 int	ft_elem_min(t_stack **stack)
 {
+	t_stack	*temp;
 	int	i;
 
-	i = (*stack)->nbr;
-	while (*stack)
+	if (!*stack || !stack)
+		return (INT_MAX);
+	temp = *stack;
+	i = temp->nbr;
+	while (temp)
 	{
-		if ((*stack)->nbr < i)
-			i = (*stack)->nbr;
-		(*stack) = (*stack)->next;
+		if (temp->nbr < i)
+			i = temp->nbr;
+		temp = temp->next;
 	}
 	return (i);
 }
 
 int	ft_elem_max(t_stack **stack)
 {
+	t_stack	*temp;
 	int	i;
 
-	i = (*stack)->nbr;
-	while (*stack)
+	if (!*stack || !stack)
+		return (INT_MIN);
+	temp = *stack;
+	i = temp->nbr;
+	while (temp)
 	{
-		if ((*stack)->nbr > i)
-			i = (*stack)->nbr;
-		(*stack) = (*stack)->next;
+		if (temp->nbr > i)
+			i = temp->nbr;
+		temp = temp->next;
 	}
 	return (i);
 }

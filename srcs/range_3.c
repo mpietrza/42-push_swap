@@ -12,6 +12,11 @@
 
 #include "../include/push_swap.h"
 
+void	ft_range_2(t_stack **a)
+{
+	ft_swap(a);
+}
+
 void	ft_range_3(t_stack **a)
 {
 	if (ft_elem_min(a) == (*a)->nbr)

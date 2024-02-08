@@ -14,19 +14,44 @@
 
 bool	ft_is_stack_asc(t_stack **stack)
 {
-	int	prev_nbr;
+	long	prev_nbr;
+	t_stack	*temp;
 
-	if (!stack || !*stack)
-		return (false);
-	prev_nbr = (*stack)->nbr;
-	while (*stack)
+	if (!stack)
 	{
-		if (prev_nbr > (*stack)->nbr)
+		ft_printf("Debug point: stack is NULL\n");
+		return (false);
+	}
+	temp = *stack;
+	prev_nbr = temp->nbr;
+	temp = temp->next;
+	while (temp)
+	{
+		ft_printf("Debug point: prev_nbr = %d, nbr = %d\n", (int)prev_nbr, (int)temp->nbr);
+		if (prev_nbr >= temp->nbr)
 			return (false);
-		prev_nbr = (*stack)->nbr;
-		(*stack) = (*stack)->next;
+		prev_nbr = temp->nbr;
+		temp = temp->next;
 	}
 	return (true);
+}
+
+void ft_give_index(t_stack **stack)
+{
+	t_stack	*temp;
+	long	i;
+
+	if (!stack || !*stack)
+		return ;
+	temp = *stack;
+	i = 0;
+	while (temp)
+	{
+		temp->index = i;
+		ft_printf("Debug point: index = %d, value = %d\n", (int)temp->index, (int)temp->nbr);
+		temp = temp->next;
+		i++;
+	}
 }
 
 int	ft_find_index(t_stack **stack, int nbr)

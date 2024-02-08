@@ -1,29 +1,4 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   stack_utils.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mpietrza <mpietrza@student.42barcel>       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/02 13:52:54 by mpietrza          #+#    #+#             */
-/*   Updated: 2024/02/06 17:04:19 by mpietrza         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../include/push_swap.h"
-
-bool	ft_stack_init(t_stack **stack, char name, long nbr)
-{
-	*stack = ft_calloc(1, sizeof(t_stack));
-	if (!*stack)
-		return (false);
-	(*stack)->name = name;
-	(*stack)->nbr = nbr;
-	(*stack)->index = 0;
-	(*stack)->prev = NULL;
-	(*stack)->next = NULL;
-	return (true);
-}
 
 t_stack	*ft_stack_new(char name, long nbr)
 {
@@ -64,3 +39,16 @@ void	ft_stack_add_bottom(t_stack **stack, t_stack *new)
 	else
 		*stack = new;
 }
+
+bool	ft_stack_init(t_stack **stack, char name, long nbr)
+{
+	*stack = calloc(1, sizeof(t_stack));
+	if (!*stack)
+		return (false);
+	(*stack)->name = name;
+	(*stack)->nbr = nbr;
+	(*stack)->index = 0;
+	(*stack)->next = NULL;
+	return (true);
+}
+

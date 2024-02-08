@@ -14,21 +14,32 @@
 
 bool	ft_data_parse(t_stack **a, int argc, char **argv, t_data *data)
 {
-	int	i;
+	int		i;
 	long	num;
+	t_stack	*temp;
 
 	i = 1;
 	*a = NULL;
 	while (argv[i])
 	{
 		num = ft_atoi_ps(argv[i], data);
+		ft_printf("Debug point: parsed atoi'ed num = %d\n", (int)num);
 		if (data->atoi_error == true)
 			return (false);
 		ft_stack_add_bottom(a, ft_stack_new('a', num));
 		i++;
 	}
+	ft_give_index(a);
+	temp = *a;
+	while (temp)
+	{
+		ft_printf("Debug point: index = %d, value = %d\n", temp->index, temp->nbr);
+		temp = temp->next;
+	}
 	if (i == argc)
 		return (true);
+	else
+		printf("Error\nInvalid input data!\n");
 	return (false);
 }
 

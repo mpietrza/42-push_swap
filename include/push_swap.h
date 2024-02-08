@@ -25,7 +25,7 @@ typedef struct	s_stack
 	char			name;
 	long			nbr;
 	long			index;
-	struct s_stack	*prev;
+//	struct s_stack	*prev;
 	struct s_stack	*next;
 }					t_stack;
 
@@ -62,6 +62,7 @@ bool	ft_swap(t_stack **stack);
 bool	ft_ss(t_stack **a, t_stack **b);
 bool	ft_check_argv(int argc, char **argv);
 bool	ft_range_bracket(int argc, t_stack **a);
+void	ft_range_2(t_stack **a);
 void	ft_range_3(t_stack **a);
 bool	ft_stack_init(t_stack **stack, char name, long nbr);
 t_stack	*ft_stack_new(char name, long nbr);
@@ -72,6 +73,7 @@ int		ft_elem_min(t_stack **stack);
 int		ft_elem_max(t_stack **stack);
 int		ft_stack_size(t_stack **stack);
 bool	ft_is_stack_asc(t_stack **stack);
+void	ft_give_index(t_stack **stack);
 int		ft_find_index(t_stack **stack, int nbr);
 int		ft_find_index_after_push(t_stack **stack, int nbr_pushed);
 void	ft_stack_free(t_stack **stack);
