@@ -25,6 +25,8 @@ typedef struct	s_stack
 	char			name;
 	long			nbr;
 	long			index;
+	long			push_price;
+	bool			cheapest;
 //	struct s_stack	*prev;
 	struct s_stack	*next;
 }					t_stack;
@@ -74,6 +76,7 @@ int		ft_elem_max(t_stack **stack);
 int		ft_stack_size(t_stack **stack);
 bool	ft_is_stack_asc(t_stack **stack);
 void	ft_give_index(t_stack **stack);
+int		ft_fake_argc(char **argv);
 int		ft_find_index(t_stack **stack, int nbr);
 int		ft_find_index_after_push(t_stack **stack, int nbr_pushed);
 void	ft_stack_free(t_stack **stack);

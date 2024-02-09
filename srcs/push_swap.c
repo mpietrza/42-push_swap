@@ -60,6 +60,14 @@ int	main(int argc, char **argv)
 	ft_printf("Debug point: data created\n");
 	if (!data)
 		ft_error_exit("Error\nMemory allocation failure!\n");
+	if (argc == 2 && ft_strchr(argv[1], ' ') != NULL && argv[1][0] != '\0')
+	{
+
+
+		argv = new_argv;
+		argc = new_argc;
+	}
+
 	if (ft_stack_init(&b, 'b', 0) == false)
 	{
 		free(data);

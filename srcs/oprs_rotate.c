@@ -33,12 +33,6 @@ bool	ft_rotate(t_stack **stack)
 		return (false);
 	if (*stack)
 		ft_printf("r%c\n", (*stack)->name);
-	/*
-	{
-		write(1, "r", 1);
-		write(1, &((*stack)->name), 1);
-		write(1, "\n", 1);
-	}*/
 	return (true);
 }
 

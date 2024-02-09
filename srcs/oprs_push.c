@@ -19,6 +19,7 @@ bool	ft_push(t_stack **stack_1, t_stack **stack_2)
 	if (!*stack_2)
 		return (false);
 	tmp = *stack_1;
+	tmp->name = (*stack_2)->name;
 	*stack_1 = *stack_2;
 	*stack_2 = (*stack_2)->next;
 	(*stack_1)->next = tmp;

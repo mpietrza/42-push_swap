@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 13:52:47 by mpietrza          #+#    #+#             */
-/*   Updated: 2024/02/06 17:14:14 by mpietrza         ###   ########.fr       */
+/*   Updated: 2024/02/09 17:39:39 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,3 +63,39 @@ int	ft_atoi_ps(const char *s, t_data *data)
 	}
 	return (sign * nbr);
 }
+
+int	ft_fake_argc(char **argv)
+{
+	int		i;
+	int		fake_argc;
+	bool	is_space;
+
+	i = 0;
+	fake_argc = 1;
+	is_space = false;
+	while (argv[1][i])
+		if (argv[1][i] == ' ')
+			i++;
+	while (argv[1][i])
+	{
+		if (argv[1][i] >= '0' && argv[1][i] <= '9')
+		{
+			if (is_space == true)
+				fake_argc++;
+			is_space = false;
+		}
+		else if (argv[1][i] == ' ')		
+			is_space = true;
+		i++;
+	}
+	return (fake_argc);
+}
+
+char	**ft_fake_argv(char **argv, int fake_argc)
+		char *s = NULL;
+		char **new_argv = NULL;
+
+		new_argv = malloc(sizeof(char *) * new_argc);
+		if (!new_argv)
+			return (NULL);
+		new_argv[0] = s;
