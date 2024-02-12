@@ -54,6 +54,8 @@ bool	ft_duplicate_check(t_stack *a);
 void	ft_error_exit(const char *error_message);
 void	ft_free_and_exit(t_stack **a, t_stack **b, t_data *data,
 		const char *error_message);
+int		ft_fake_argc(char *s);
+char	**ft_fake_argv(char **argv, int fake_argc);
 void	ft_exit_succesful(t_stack **a, t_stack **b, t_data *data);
 bool	ft_push(t_stack **stack_1, t_stack **stack_2);
 bool	ft_rev_rotate(t_stack **stack);
@@ -76,7 +78,6 @@ int		ft_elem_max(t_stack **stack);
 int		ft_stack_size(t_stack **stack);
 bool	ft_is_stack_asc(t_stack **stack);
 void	ft_give_index(t_stack **stack);
-int		ft_fake_argc(char **argv);
 int		ft_find_index(t_stack **stack, int nbr);
 int		ft_find_index_after_push(t_stack **stack, int nbr_pushed);
 void	ft_stack_free(t_stack **stack);

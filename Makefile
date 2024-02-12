@@ -6,7 +6,7 @@
 #    By: mpietrza <mpietrza@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/18 14:21:04 by mpietrza          #+#    #+#              #
-#    Updated: 2024/02/07 14:35:32 by mpietrza         ###   ########.fr        #
+#    Updated: 2024/02/12 15:57:37 by mpietrza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ DIR_INCL	= ./include/
 LIBFT		= $(DIR_LIBFT)libft.a
 INCLUDE		= push_swap.h
 CC			= cc
-CFLAGS		= -Wall -Wextra -Werror -fsanitize=address -g
+CFLAGS		= -Wall -Wextra -Werror -fsanitize=address# -g
 RM			= rm -f
 
 #COLORS

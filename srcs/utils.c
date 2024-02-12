@@ -64,7 +64,7 @@ int	ft_atoi_ps(const char *s, t_data *data)
 	return (sign * nbr);
 }
 
-int	ft_fake_argc(char **argv)
+int	ft_fake_argc(char *s)
 {
 	int		i;
 	int		fake_argc;
@@ -72,19 +72,18 @@ int	ft_fake_argc(char **argv)
 
 	i = 0;
 	fake_argc = 1;
-	is_space = false;
-	while (argv[1][i])
-		if (argv[1][i] == ' ')
-			i++;
-	while (argv[1][i])
+	is_space = true;
+	while (s[i] && (s[i] == ' '))
+		i++;
+	while (s[i])
 	{
-		if (argv[1][i] >= '0' && argv[1][i] <= '9')
+		if (s[i] >= '0' && s[i] <= '9')
 		{
 			if (is_space == true)
 				fake_argc++;
 			is_space = false;
 		}
-		else if (argv[1][i] == ' ')		
+		else if (s[i] == ' ')		
 			is_space = true;
 		i++;
 	}
@@ -92,10 +91,16 @@ int	ft_fake_argc(char **argv)
 }
 
 char	**ft_fake_argv(char **argv, int fake_argc)
-		char *s = NULL;
-		char **new_argv = NULL;
+{
+	char *s = NULL;
+	char **fake_argv = NULL;
 
-		new_argv = malloc(sizeof(char *) * new_argc);
-		if (!new_argv)
-			return (NULL);
-		new_argv[0] = s;
+	fake_argv = malloc(sizeof(char *) * fake_argc);
+	if (!fake_argv)
+		return (NULL);
+	s = ft_strjoin(argv[0], " ");
+	s = ft_strjoin(s, argv[1]);
+	fake_argv = ft_split(s, ' ');
+	return (fake_argv);
+}
+

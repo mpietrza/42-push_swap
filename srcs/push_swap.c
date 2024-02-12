@@ -51,22 +51,22 @@ int	main(int argc, char **argv)
 	t_data	*data;
 	t_stack	*a = NULL;
 	t_stack	*b = NULL;
+	char	**temp = NULL;
 
-	if (argc == 1 || ft_check_argv(argc, argv) == false)
-	{
+	if (argc == 1)
 		ft_error_exit("Error\nInvalid input data!\n");
+	if (argc == 2 && ft_strchr(argv[1], ' ') != NULL && argv[1][0] != '\0')
+	{
+		argc = ft_fake_argc(argv[1]);
+		ft_printf("Debug point: fake argc = %d\n", argc);
+		temp = argv;
+		ft_printf("Debug point: temp = %s\n", temp[1]);
+		argv = ft_fake_argv(temp, argc);
 	}
 	data = calloc(1, sizeof(t_data));
 	ft_printf("Debug point: data created\n");
 	if (!data)
 		ft_error_exit("Error\nMemory allocation failure!\n");
-	if (argc == 2 && ft_strchr(argv[1], ' ') != NULL && argv[1][0] != '\0')
-	{
-
-
-		argv = new_argv;
-		argc = new_argc;
-	}
 
 	if (ft_stack_init(&b, 'b', 0) == false)
 	{
