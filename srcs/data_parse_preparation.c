@@ -36,8 +36,6 @@ bool	ft_data_parse(t_stack **a, int argc, char **argv, t_data *data)
 		ft_printf("Debug point: index = %d, value = %d\n", temp->index, temp->nbr);
 		temp = temp->next;
 	}
-	if (temp)
-		free(temp);
 	if (i == argc)
 		return (true);
 	else

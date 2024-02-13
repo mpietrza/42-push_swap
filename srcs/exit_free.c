@@ -38,5 +38,6 @@ void	ft_exit_succesful(t_stack **a, t_stack **b, t_data *data)
 		ft_stack_free(b);
 	if (data)
 		free(data);
+
 	exit(EXIT_SUCCESS);
 }

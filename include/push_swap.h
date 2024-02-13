@@ -49,6 +49,7 @@ typedef struct	s_data
 
 /* list of functions */
 int		ft_atoi_ps(const char *s, t_data *data);
+bool	ft_data_init(t_data *data);
 bool	ft_data_parse(t_stack **a, int argc, char **argv, t_data *data);
 bool	ft_duplicate_check(t_stack *a);
 void	ft_error_exit(const char *error_message);
