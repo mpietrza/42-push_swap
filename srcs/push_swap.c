@@ -49,45 +49,51 @@ bool	ft_range_bracket(int argc, t_stack **a)
 int	main(int argc, char **argv)
 {
 	t_data	*data;
-	t_stack	*a = NULL;
+//	t_stack	*a = NULL;
 	t_stack	*b = NULL;
 	char	**temp = NULL;
 
 	if (argc == 1)
-		ft_error_exit("Error\nInvalid input data!\n");
+		return (0);
 	if (argc == 2 && ft_strchr(argv[1], ' ') != NULL && argv[1][0] != '\0')
 	{
 		argc = ft_fake_argc(argv[1]);
 		ft_printf("Debug point: fake argc = %d\n", argc);
 		temp = argv;
 		ft_printf("Debug point: temp = %s\n", temp[1]);
-		argv = ft_fake_argv(temp, argc);
+		if (ft_fake_argv(temp, argc) == false)
+		{
+			ft_printf("Debug point: fake argv = %s\n", temp[1]);
+			ft_error_exit("Error\nMemory allocation failure!\n");
+		}
+	//	if (temp)
+	//		free(temp);
 	}
+	else if (argc == 2 && (ft_strchr(argv[1], ' ') == NULL || argv[1][0] == '\0'))
+		return (0);
 	data = calloc(1, sizeof(t_data));
 	ft_printf("Debug point: data created\n");
 	if (!data)
 		ft_error_exit("Error\nMemory allocation failure!\n");
-
 	if (ft_stack_init(&b, 'b', 0) == false)
 	{
 		free(data);
 		ft_error_exit("Error\nMemory allocation failure!\n");
 	}
 	else
-	{
 		ft_printf("Debug point: stack 'b' created\n");
-		while (b)
+//	if (ft_stack_init(&a, 'a', 0) == false)
+//	{
+		if (data)
+			free(data);
+		if (b)
+			ft_stack_free(&b);
+		while (*argv)
 		{
-			printf("stack value = %d\n", (int)b->nbr);
-			(b) = (b)->next;
+			ft_printf("Debug point: argv[0] = %s\n",  *argv++);
 		}
-	}
-	if (ft_stack_init(&a, 'a', 0) == false)
-	{
-		free(data);
-		free(b);
 		ft_error_exit("Error\nMemory allocation failure!\n");
-	}
+/*	}
 	else
 	{
 		ft_printf("Debug point: stack 'a' created\n");
@@ -122,5 +128,5 @@ int	main(int argc, char **argv)
 		(a) = (a)->next;
 	}
 	ft_exit_succesful(&a, &b, data);
-	return (0);
+	return (0);*/
 }

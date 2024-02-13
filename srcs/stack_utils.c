@@ -15,11 +15,14 @@ t_stack	*ft_stack_new(char name, long nbr)
 
 t_stack	*ft_stack_last(t_stack *stack)
 {
+	t_stack	*temp;
+
 	if (!stack)
 		return (NULL);
-	while (stack->next)
-		stack = stack->next;
-	return (stack);
+	temp = stack;
+	while (temp->next)
+		temp = temp->next;
+	return (temp);
 }
 
 void	ft_stack_add_top(t_stack **stack, t_stack *new)

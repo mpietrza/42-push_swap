@@ -90,17 +90,23 @@ int	ft_fake_argc(char *s)
 	return (fake_argc);
 }
 
-char	**ft_fake_argv(char **argv, int fake_argc)
+bool	ft_fake_argv(char **argv, int fake_argc)
 {
 	char *s = NULL;
+	char *temp = NULL;
 	char **fake_argv = NULL;
+	
 
 	fake_argv = malloc(sizeof(char *) * fake_argc);
 	if (!fake_argv)
-		return (NULL);
-	s = ft_strjoin(argv[0], " ");
-	s = ft_strjoin(s, argv[1]);
+		return (false);
+	temp = ft_strjoin(argv[0], " ");
+	s = ft_strjoin(temp, argv[1]);
+	free(temp);
 	fake_argv = ft_split(s, ' ');
-	return (fake_argv);
+	free(s);
+	argv = fake_argv;
+	free(fake_argv);
+	return (true);
 }
 

@@ -33,18 +33,18 @@ typedef struct	s_stack
 
 /*struct - for data transfer thoughout the program*/
 typedef struct	s_data
-{
-	int		num_of_args;
-	int		percentage;
-	int		lsp;
-	int		control;
-	int		cont;
-	int		error;
+{	char	**argv;
+	int		argc;
+//	int		percentage;
+//	int		lsp;
+//	int		control;
+//	int		cont;
+//	int		error;
 	bool 		atoi_error;
-	int		j_atoi;
-	int		size_block;
-	int		arg_max;
-	int		arguments;
+//	int		j_atoi;
+//	int		size_block;
+//	int		arg_max;
+//	int		arguments;
 }				t_data;
 
 /* list of functions */
@@ -55,7 +55,7 @@ void	ft_error_exit(const char *error_message);
 void	ft_free_and_exit(t_stack **a, t_stack **b, t_data *data,
 		const char *error_message);
 int		ft_fake_argc(char *s);
-char	**ft_fake_argv(char **argv, int fake_argc);
+bool	ft_fake_argv(char **argv, int fake_argc);
 void	ft_exit_succesful(t_stack **a, t_stack **b, t_data *data);
 bool	ft_push(t_stack **stack_1, t_stack **stack_2);
 bool	ft_rev_rotate(t_stack **stack);

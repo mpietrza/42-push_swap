@@ -18,7 +18,7 @@ DIR_INCL	= ./include/
 LIBFT		= $(DIR_LIBFT)libft.a
 INCLUDE		= push_swap.h
 CC			= cc
-CFLAGS		= -Wall -Wextra -Werror -fsanitize=address# -g
+CFLAGS		= -Wall -Wextra -Werror #-fsanitize=address# -g
 RM			= rm -f
 
 #COLORS

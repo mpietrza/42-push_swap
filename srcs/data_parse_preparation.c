@@ -29,13 +29,15 @@ bool	ft_data_parse(t_stack **a, int argc, char **argv, t_data *data)
 		ft_stack_add_bottom(a, ft_stack_new('a', num));
 		i++;
 	}
-	ft_give_index(a);
+//	ft_give_index(a);
 	temp = *a;
 	while (temp)
 	{
 		ft_printf("Debug point: index = %d, value = %d\n", temp->index, temp->nbr);
 		temp = temp->next;
 	}
+	if (temp)
+		free(temp);
 	if (i == argc)
 		return (true);
 	else

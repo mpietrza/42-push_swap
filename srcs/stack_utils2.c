@@ -51,13 +51,15 @@ int	ft_elem_max(t_stack **stack)
 int	ft_stack_size(t_stack **stack)
 {
 	int	i;
+	t_stack	*temp = NULL;
 
 	if (!*stack)
 		return (0);
 	i = 1;
-	while ((*stack)->next)
+	temp = *stack;
+	while (temp->next)
 	{
-		(*stack) = (*stack)->next;
+		temp = temp->next;
 		i++;
 	}
 	return (i);
