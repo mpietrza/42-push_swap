@@ -20,7 +20,7 @@
 # include "../libft/libft.h"
 
 /*struct - stack*/
-typedef struct	s_stack
+typedef struct		s_stack
 {
 	char			name;
 	long			nbr;
@@ -33,8 +33,10 @@ typedef struct	s_stack
 
 /*struct - for data transfer thoughout the program*/
 typedef struct	s_data
-{	char	**argv;
+{	
+	char	**argv;
 	int		argc;
+	bool	fake_argc;
 //	int		percentage;
 //	int		lsp;
 //	int		control;
@@ -48,16 +50,16 @@ typedef struct	s_data
 }				t_data;
 
 /* list of functions */
-int		ft_atoi_ps(const char *s, t_data *data);
-bool	ft_data_init(t_data *data);
-bool	ft_data_parse(t_stack **a, int argc, char **argv, t_data *data);
+int		ft_atoi_ps(int j, t_data *data);
+bool	ft_data_init(t_data *data, int argc);
+bool	ft_data_parse(t_stack **a, t_data *data);
 bool	ft_duplicate_check(t_stack *a);
 void	ft_error_exit(const char *error_message);
+void	ft_exit_succesful(t_stack **a, t_stack **b, t_data *data);
 void	ft_free_and_exit(t_stack **a, t_stack **b, t_data *data,
 		const char *error_message);
-int		ft_fake_argc(char *s);
-bool	ft_fake_argv(char **argv, int fake_argc);
-void	ft_exit_succesful(t_stack **a, t_stack **b, t_data *data);
+void	ft_fake_argc(t_data *data, char *s);
+bool	ft_fake_argv(char **argv, t_data *data);
 bool	ft_push(t_stack **stack_1, t_stack **stack_2);
 bool	ft_rev_rotate(t_stack **stack);
 bool	ft_rrr(t_stack **a, t_stack **b);
@@ -66,7 +68,7 @@ bool	ft_rr(t_stack **a, t_stack **b);
 bool	ft_swap(t_stack **stack);
 bool	ft_ss(t_stack **a, t_stack **b);
 bool	ft_check_argv(int argc, char **argv);
-bool	ft_range_bracket(int argc, t_stack **a);
+bool	ft_range_bracket(t_data *data, t_stack **a);
 void	ft_range_2(t_stack **a);
 void	ft_range_3(t_stack **a);
 bool	ft_stack_init(t_stack **stack, char name, long nbr);

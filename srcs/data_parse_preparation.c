@@ -12,22 +12,24 @@
 
 #include "../include/push_swap.h"
 
-bool	ft_data_parse(t_stack **a, int argc, char **argv, t_data *data)
+bool	ft_data_parse(t_stack **a, t_data *data)
 {
-	int		i;
+	int		j;
 	long	num;
 	t_stack	*temp;
 
-	i = 1;
+	j = 1;
 	*a = NULL;
-	while (argv[i])
+	ft_printf("Debug point: argc = %d\n", data->argc);
+	while (j < data->argc)
 	{
-		num = ft_atoi_ps(argv[i], data);
+		ft_printf("Debug point: data->argv[%d] = %s\n", j, data->argv[j]);
+		num = ft_atoi_ps(j, data);
 		ft_printf("Debug point: parsed atoi'ed num = %d\n", (int)num);
 		if (data->atoi_error == true)
 			return (false);
 		ft_stack_add_bottom(a, ft_stack_new('a', num));
-		i++;
+		j++;
 	}
 //	ft_give_index(a);
 	temp = *a;
@@ -36,7 +38,7 @@ bool	ft_data_parse(t_stack **a, int argc, char **argv, t_data *data)
 		ft_printf("Debug point: index = %d, value = %d\n", temp->index, temp->nbr);
 		temp = temp->next;
 	}
-	if (i == argc)
+	if (j == data->argc)
 		return (true);
 	else
 		printf("Error\nInvalid input data!\n");

@@ -35,6 +35,7 @@ W = "\033[37m"
 #SOURCES
 
 SRC			= data_parse_preparation.c \
+			  data_init.c \
 			  exit_free.c \
 			  oprs_push.c \
 			  oprs_r_rotate.c \
