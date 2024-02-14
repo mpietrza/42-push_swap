@@ -46,18 +46,6 @@ bool	ft_range_bracket(t_data *data, t_stack **a)
 	return (true);
 }
 
-static void	ft_argv_copy(char **argv, t_data *data)
-{
-	int	i;
-
-	i = 0;
-	while (i < data->argc)
-	{
-		data->argv[i] = ft_strdup(argv[i]);
-		i++;
-	}
-}
-
 int	main(int argc, char **argv)
 {
 	t_data	*data;
@@ -91,10 +79,7 @@ int	main(int argc, char **argv)
 			ft_printf("Debug point: fake argc and argv created\n");
 	}
 	else
-	{
-		ft_argv_copy(argv, data);
-		ft_printf("Debug point: argv copied to data\n");
-	}
+		data->argv = argv;
 	if (data->argc > 4)
 	{
 		if (ft_stack_init(&b, 'b', 0) == false)
