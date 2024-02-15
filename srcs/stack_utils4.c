@@ -12,6 +12,20 @@
 
 #include "../include/push_swap.h"
 
+
+static void ft_stack_delone(t_stack *stack)
+{
+	if (stack)
+	{
+		if (stack->next)
+		{
+			stack->next = NULL;
+		}		
+		free(stack);
+		stack = NULL;
+	}
+}
+
 void	ft_stack_free(t_stack **stack)
 {
 	t_stack	*temp;
@@ -21,9 +35,8 @@ void	ft_stack_free(t_stack **stack)
 	while (*stack)
 	{
 		temp = (*stack)->next;
-		free(*stack);
+		ft_stack_delone(*stack);
 		*stack = temp;
 	}
 	*stack = NULL;
-	stack = NULL;
 }

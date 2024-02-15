@@ -9,6 +9,9 @@ t_stack	*ft_stack_new(char name, long nbr)
 		return (NULL);
 	new->name = name;
 	new->nbr = nbr;
+	new->index = 0;
+	new->push_price = 0;
+	new->cheapest = false;
 	new->next = NULL;
 	return (new);
 }
@@ -43,6 +46,7 @@ void	ft_stack_add_bottom(t_stack **stack, t_stack *new)
 		*stack = new;
 }
 
+/*
 bool	ft_stack_init(t_stack **stack, char name, long nbr)
 {
 	*stack = calloc(1, sizeof(t_stack));
@@ -53,5 +57,5 @@ bool	ft_stack_init(t_stack **stack, char name, long nbr)
 	(*stack)->index = 0;
 	(*stack)->next = NULL;
 	return (true);
-}
+}*/
 

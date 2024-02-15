@@ -12,13 +12,10 @@
 
 #include "../include/push_swap.h"
 
-bool	ft_data_init(t_data *data, int argc)
+void	ft_data_init(t_data *data, char **argv, int argc, bool is_argc_fake)
 {
-	data->argv = ft_calloc(1, sizeof(char *));
-	if (data->argv == NULL)
-		return (false);
+	data->argv = argv;
 	data->argc = argc;
 	data->atoi_error = false;
-	data->fake_argc = false;
-	return (true);
+	data->is_argc_fake = is_argc_fake;
 }

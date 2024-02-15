@@ -27,12 +27,14 @@ static void	ft_free_core(t_stack **a, t_stack **b, t_data *data)
 	if (*a)
 	{
 		ft_stack_free(a);
+		*a = NULL;
 		if (!*a)
 			ft_printf("Debug point: *a is freed (NULL)\n");
 	}
 	if (*b && data->argc > 4)
 	{
 		ft_stack_free(b);
+		*b = NULL;
 		if (!*b)
 			ft_printf("Debug point: *b is freed (NULL)\n");
 	}
@@ -43,7 +45,7 @@ static void	ft_free_core(t_stack **a, t_stack **b, t_data *data)
 			while(i <= data->argc)
 			{
 				//	ft_printf("Debug point: freeing data->argv[%d] = %s\n", i, data->argv[i]);
-				if (data->fake_argc == true)
+				if (data->is_argc_fake == true)
 					free(data->argv[i]);
 			/*
 					j = 0;
@@ -58,7 +60,7 @@ static void	ft_free_core(t_stack **a, t_stack **b, t_data *data)
 					ft_printf("Debug point: data->argv[%d] is freed (NULL)\n", i);
 				i++;
 			}
-			if (data->fake_argc == true)
+			if (data->is_argc_fake == true)
 				free(data->argv);
 			data->argv = NULL;
 			if (!data->argv)

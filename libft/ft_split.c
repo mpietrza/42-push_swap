@@ -34,15 +34,12 @@ static size_t	count_substr(char const *s, char c)
 	return (count);
 }
 
-static void	free_arr(char **arr)
+static void	free_arr(char **arr, size_t i)
 {
-	size_t	i;
-
-	i = 0;
-	while (arr[i])
+	while (i-- > 0)
 	{
 		free(arr[i]);
-		i++;
+		arr[i] = NULL;
 	}
 	free(arr);
 }
@@ -62,16 +59,16 @@ static char	**essence(char **arr, char const *s, char c)
 			while (*s && *s != c && ++j)
 				++s;
 			arr[i++] = ft_substr((s - j), 0, j);
-			if (arr[i - 1] == 0)
+			if (arr[i - 1] == NULL)
 			{
-				free_arr(arr);
+				free_arr(arr, i);
 				return (NULL);
 			}
 		}
 		else
 			++s;
 	}
-	arr[i] = 0;
+	arr[i] = NULL;
 	return (arr);
 }
 

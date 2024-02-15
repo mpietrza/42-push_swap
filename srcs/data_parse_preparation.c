@@ -24,14 +24,16 @@ bool	ft_data_parse(t_stack **a, t_data *data)
 	while (j < data->argc)
 	{
 		ft_printf("Debug point: data->argv[%d] = %s\n", j, data->argv[j]);
-		num = ft_atoi_ps(j, data);
-		ft_printf("Debug point: parsed atoi'ed num = %d\n", (int)num);
+		num = ft_atoi_ps(data->argv[j], data);
 		if (data->atoi_error == true)
+		{
 			return (false);
+		}
+		ft_printf("Debug point: parsed atoi'ed num = %d\n", (int)num);
 		ft_stack_add_bottom(a, ft_stack_new('a', num));
 		j++;
 	}
-//	ft_give_index(a);
+	// ft_give_index(a);
 	temp = *a;
 	while (temp)
 	{
@@ -41,8 +43,9 @@ bool	ft_data_parse(t_stack **a, t_data *data)
 	if (j == data->argc)
 		return (true);
 	else
-		printf("Error\nInvalid input data!\n");
-	return (false);
+	{
+		return (false);
+	}
 }
 
 bool	ft_duplicate_check(t_stack *a)

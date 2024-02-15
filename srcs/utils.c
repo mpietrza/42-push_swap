@@ -30,24 +30,20 @@ bool	ft_is_str_num(char *s)
 	return (false);
 }
 
-int	ft_error(t_data *data, int nbr)
+int	ft_atoi_ps(char *s, t_data *data)
 {
-	nbr = 0;
-	data->atoi_error = 1;
-	return (nbr);
-}
-
-int	ft_atoi_ps(int j, t_data *data)
-{
-	char			*s;
 	int				i;
 	int				sign;
 	long long int	nbr;
 
 	i = 0;
-	s = data->argv[j];
 	sign = 1;
 	nbr = 0;
+	if (ft_is_str_num(s) == false)
+	{
+		data->atoi_error = true;
+		return (-1);
+	}
 	while (s[i] == ' ' || s[i] == '\t' || s[i] == '\n' || s[i] == '\v'
 		|| s[i] == '\f' || s[i] == '\r' || s[i] == '+' || s[i] == '-')
 	{
@@ -61,12 +57,15 @@ int	ft_atoi_ps(int j, t_data *data)
 		i++;
 		if ((nbr > ((long long int)INT_MAX + 1) && sign == -1)
 			|| (nbr > INT_MAX && sign == 1))
-			return (ft_error(data, nbr));
+		{
+			data->atoi_error = true;
+			return (-1);
+		}
 	}
 	return (sign * nbr);
 }
 
-void	ft_fake_argc(t_data *data, char *s)
+int	ft_fake_argc(char *s)
 {
 	int		i;
 	int		fake_argc;
@@ -89,27 +88,24 @@ void	ft_fake_argc(t_data *data, char *s)
 			is_space = true;
 		i++;
 	}
-	data->argc = fake_argc;
-	data->fake_argc = true;
+	return (fake_argc);
 }
 
-bool	ft_fake_argv(char **argv, t_data *data)
+char	**ft_fake_argv(char **argv, int	fake_argc)
 {
-	char *s = NULL;
-	char *temp = NULL;
-	char **fake_argv = NULL;
-	
+	char	*s = NULL;
+	char	*temp = NULL;
+	char	**fake_argv = NULL;
+//	int		i;
 
-	fake_argv = malloc(sizeof(char *) * data->argc);
+	fake_argv = ft_calloc(fake_argc, sizeof(char *));
 	if (!fake_argv)
-		return (false);
+		return (NULL);
 	temp = ft_strjoin(argv[0], " ");
 	s = ft_strjoin(temp, argv[1]);
 	free(temp);
 	fake_argv = ft_split(s, ' ');
 	free(s);
-	data->argv = fake_argv;
-	//free(fake_argv);
-	return (true);
+	return (fake_argv);
 }
 
