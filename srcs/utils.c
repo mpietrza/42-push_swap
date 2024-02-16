@@ -30,11 +30,11 @@ bool	ft_is_str_num(char *s)
 	return (false);
 }
 
-int	ft_atoi_ps(char *s, t_data *data)
+long	ft_atoi_ps(char *s, t_data *data)
 {
-	int				i;
-	int				sign;
-	long long int	nbr;
+	int		i;
+	int		sign;
+	long	nbr;
 
 	i = 0;
 	sign = 1;
@@ -55,10 +55,10 @@ int	ft_atoi_ps(char *s, t_data *data)
 	{
 		nbr = nbr * 10 + s[i] - '0';
 		i++;
-		if ((nbr > ((long long int)INT_MAX + 1) && sign == -1)
+		if ((nbr > ((long)INT_MAX + 1) && sign == -1)
 			|| (nbr > INT_MAX && sign == 1))
 		{
-			data->atoi_error = true;
+			data->is_int = false;
 			return (-1);
 		}
 	}
@@ -86,21 +86,19 @@ int	ft_fake_argc(char *s)
 		}
 		else if (s[i] == ' ')		
 			is_space = true;
+		else if (s[i] != '-')
+			return (0);
 		i++;
 	}
 	return (fake_argc);
 }
 
-char	**ft_fake_argv(char **argv, int	fake_argc)
+char	**ft_fake_argv(char **argv)
 {
 	char	*s = NULL;
 	char	*temp = NULL;
 	char	**fake_argv = NULL;
-//	int		i;
 
-	fake_argv = ft_calloc(fake_argc, sizeof(char *));
-	if (!fake_argv)
-		return (NULL);
 	temp = ft_strjoin(argv[0], " ");
 	s = ft_strjoin(temp, argv[1]);
 	free(temp);

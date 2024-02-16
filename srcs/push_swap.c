@@ -25,7 +25,7 @@ bool	ft_check_argv(int argc, char **argv)
 	return (true);
 }
 
-bool	ft_range_bracket(t_data *data, t_stack **a)
+bool	ft_range_bracket(t_stack **a, t_stack **b, t_data *data)
 {
 	if (ft_duplicate_check(*a) == false)
 		return (false);
@@ -35,8 +35,8 @@ bool	ft_range_bracket(t_data *data, t_stack **a)
 		ft_range_2(a);
 	else if (data->argc == 4)
 		ft_range_3(a);
-//	else if (data->argc >= 5 && argc <= 6)
-//		ft_range_s(a, b, data);
+	else if (data->argc >= 5 && data->argc <= 6)
+		ft_range_s(a, b, data);
 //	else if (data->argc >=7 && argc <= 100)
 //		ft_range_m(a, b, data);
 //	else if (data->argc >= 101)
@@ -61,8 +61,12 @@ t_data	*sub_main1(int argc, char **argv)
 		&& (ft_strchr(argv[1], ' ') != NULL))
 	{
 		fake_argc = ft_fake_argc(argv[1]);
+		if (fake_argc == 0)
+			ft_error_exit("Error\nProblem with the data input!\n");
+		else if (fake_argc == 1 || fake_argc == 2)
+			return (NULL);
 		ft_printf("Debug point: fake_argc created\n");
-		fake_argv = ft_fake_argv(argv, fake_argc);
+		fake_argv = ft_fake_argv(argv);
 		if (!fake_argv)
 			ft_error_exit("Error\nMemory allocation for 'fake_argv' failure!\n");
 		ft_printf("Debug point: fake_argv initialized\n");
@@ -96,35 +100,17 @@ int	main(int argc, char **argv)
 		return (0);
 	else
 		data = sub_main1(argc, argv);
-	if (data->argc > 4)
-	{
-		b = ft_stack_new('b', 0);
-		if (!b)
-			ft_error_exit("Error\nMemory allocation for stack 'b' failure!\n");
-		else
-			ft_printf("Debug point: stack 'b' created\n");
-	}
-	a = ft_stack_new('a', 0);
-	if (!a)
-	{
-		if (data)
-			free(data);
-		if (b)
-			ft_stack_free(&b);
-		while (*data->argv)
-		{
-			ft_printf("Debug point: argv[0] = %s\n",  *data->argv++);
-		}
-		ft_error_exit("Error\nMemory allocation failure!\n");
-	}
+	if (!data)
+		return (0);
 	else
-	{
-		ft_printf("Debug point: stack 'a' created\n");
-	}
+		ft_printf("Debug point: data created\n");
 	if (ft_data_parse(&a, data) == false)
 		ft_free_and_exit(&a, &b, data, "Error\nMemory allocation failure!\n");
 	else if (data->atoi_error == true)
 		ft_free_and_exit(&a, &b, data, "Error\nInput data error!\n");
+	else if (data->is_int == false)
+		ft_free_and_exit(&a, &b, data,
+			"Error\nInput data error - use only numbers in the integer range!\n");
 	else
 		ft_printf("Debug point: data parsed to stack 'a'\n");
 	if (ft_is_stack_asc(&a) == true)
@@ -134,7 +120,7 @@ int	main(int argc, char **argv)
 	}
 	else
 		ft_printf("Debug point: stack is not sorted\n");
-	if (ft_range_bracket(data, &a) == false)
+	if (ft_range_bracket(&a, &b, data) == false)
 	{
 		ft_free_and_exit(&a, &b, data, "Error\nInput data error!\n");
 	}

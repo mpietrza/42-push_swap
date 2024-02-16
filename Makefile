@@ -37,12 +37,14 @@ W = "\033[37m"
 SRC			= data_parse_preparation.c \
 			  data_init.c \
 			  exit_free.c \
+			  give_index.c \
 			  oprs_push.c \
 			  oprs_r_rotate.c \
 			  oprs_rotate.c \
 			  oprs_swap.c \
 		  	  push_swap.c \
   			  range_3.c \
+			  range_s.c \
 			  stack_utils.c \
 			  stack_utils2.c \
 			  stack_utils3.c \

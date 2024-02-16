@@ -30,6 +30,24 @@ int	ft_elem_min(t_stack **stack)
 	return (i);
 }
 
+int	ft_elem_min_higher_than_given(t_stack **stack, int given)
+{
+	t_stack	*temp;
+	int	i;
+
+	if (!*stack || !stack)
+		return (INT_MAX);
+	temp = *stack;
+	i = INT_MAX;
+	while (temp)
+	{
+		if (temp->nbr < i && temp->nbr > given)
+			i = temp->nbr;
+		temp = temp->next;
+	}
+	return (i);
+}
+
 int	ft_elem_max(t_stack **stack)
 {
 	t_stack	*temp;

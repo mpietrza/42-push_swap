@@ -43,6 +43,7 @@ typedef struct	s_data
 //	int		cont;
 //	int		error;
 	bool 		atoi_error;
+	bool		is_int;
 //	int		j_atoi;
 //	int		size_block;
 //	int		arg_max;
@@ -50,16 +51,17 @@ typedef struct	s_data
 }				t_data;
 
 /* list of functions */
-int		ft_atoi_ps(char *s, t_data *data);
+long		ft_atoi_ps(char *s, t_data *data);
 void	ft_data_init(t_data *data, char **argv, int argc, bool is_argc_fake);
 bool	ft_data_parse(t_stack **a, t_data *data);
 bool	ft_duplicate_check(t_stack *a);
+//bool	ft_is_int_check(t_stack *a);
 void	ft_error_exit(const char *error_message);
 void	ft_exit_succesful(t_stack **a, t_stack **b, t_data *data);
 void	ft_free_and_exit(t_stack **a, t_stack **b, t_data *data,
 		const char *error_message);
 int		ft_fake_argc(char *s);
-char	**ft_fake_argv(char **argv, int fake_argc);
+char	**ft_fake_argv(char **argv);
 bool	ft_push(t_stack **stack_1, t_stack **stack_2);
 bool	ft_rev_rotate(t_stack **stack);
 bool	ft_rrr(t_stack **a, t_stack **b);
@@ -68,19 +70,22 @@ bool	ft_rr(t_stack **a, t_stack **b);
 bool	ft_swap(t_stack **stack);
 bool	ft_ss(t_stack **a, t_stack **b);
 bool	ft_check_argv(int argc, char **argv);
-bool	ft_range_bracket(t_data *data, t_stack **a);
+bool	ft_range_bracket(t_stack **a, t_stack **b, t_data *data);
 void	ft_range_2(t_stack **a);
 void	ft_range_3(t_stack **a);
+void	ft_range_s(t_stack **a, t_stack **b, t_data *data);
 //bool	ft_stack_init(t_stack **stack, char name, long nbr);
 t_stack	*ft_stack_new(char name, long nbr);
 t_stack	*ft_stack_last(t_stack *stack);
 void	ft_stack_add_top(t_stack **stack, t_stack *new);
 void	ft_stack_add_bottom(t_stack **stack, t_stack *new);
 int		ft_elem_min(t_stack **stack);
+int		ft_elem_min_higher_than_given(t_stack **stack, int given);
 int		ft_elem_max(t_stack **stack);
 int		ft_stack_size(t_stack **stack);
 bool	ft_is_stack_asc(t_stack **stack);
-void	ft_give_index(t_stack **stack);
+void	ft_give_index_a(t_stack **a, t_data *data);
+//void	ft_give_index_b(t_stack **a, t_stack **b);
 int		ft_find_index(t_stack **stack, int nbr);
 int		ft_find_index_after_push(t_stack **stack, int nbr_pushed);
 void	ft_stack_free(t_stack **stack);

@@ -17,5 +17,6 @@ void	ft_data_init(t_data *data, char **argv, int argc, bool is_argc_fake)
 	data->argv = argv;
 	data->argc = argc;
 	data->atoi_error = false;
+	data->is_int = true;
 	data->is_argc_fake = is_argc_fake;
 }

@@ -18,22 +18,25 @@ bool	ft_data_parse(t_stack **a, t_data *data)
 	long	num;
 	t_stack	*temp;
 
-	j = 1;
-	*a = NULL;
+	*a = ft_stack_new('a', ft_atoi_ps(data->argv[1], data));
+	if (!*a || data->atoi_error == true)
+		return (false);
+	else
+		ft_printf("Debug point: stack 'a' created, 1st num stacked\n");
 	ft_printf("Debug point: argc = %d\n", data->argc);
+	j = 2;
 	while (j < data->argc)
 	{
 		ft_printf("Debug point: data->argv[%d] = %s\n", j, data->argv[j]);
 		num = ft_atoi_ps(data->argv[j], data);
 		if (data->atoi_error == true)
-		{
 			return (false);
-		}
 		ft_printf("Debug point: parsed atoi'ed num = %d\n", (int)num);
 		ft_stack_add_bottom(a, ft_stack_new('a', num));
 		j++;
 	}
-	// ft_give_index(a);
+
+	
 	temp = *a;
 	while (temp)
 	{
@@ -65,4 +68,17 @@ bool	ft_duplicate_check(t_stack *a)
 	}
 	return (true);
 }
+/*
+bool	ft_is_int_check(t_stack *a)
+{
+	t_stack	*temp;
 
+	temp = a;
+	while (temp)
+	{
+		if (temp->nbr > INT_MAX || temp->nbr < INT_MIN)
+			return (false);
+		temp = temp->next;
+	}
+	return (true);
+}*/
