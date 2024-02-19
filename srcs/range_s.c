@@ -18,7 +18,9 @@ void ft_range_s(t_stack **a, t_stack **b, t_data *data)
 
 	ft_push(a, b);
 	ft_give_index_a(a);
+	ft_give_current_index(a);
 	ft_give_index_b(a, b);
+	ft_give_current_index(b);
 //    temp = *a;
 	(void)data;
 }

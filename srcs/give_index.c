@@ -74,3 +74,20 @@ void ft_give_index_b(t_stack **a, t_stack **b)
         i++;
     }
 }
+
+void    ft_give_current_index(t_stack **stack)
+{
+    t_stack *temp;
+    int i;
+
+    temp = *stack;
+    i = 0;
+    while (temp)
+    {
+        temp->current_index = i;
+        ft_printf("Debug point: current index = %d, index = %d, value = %d\n",
+            temp->current_index, temp->index, temp->nbr);
+        temp = temp->next;
+        i++;
+    }
+}

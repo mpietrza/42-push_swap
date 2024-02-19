@@ -76,17 +76,18 @@ int ft_find_nearest_higher(t_stack **stack, int nbr_pushed)
 	int		index;
 	t_stack	*temp;
 
-	prev_nbr = INT_MAX;
+	prev_nbr = INT_MIN;
 	temp = *stack;
+	index = 0;
 	while (temp)
 	{
-		if (temp->nbr > nbr_pushed && temp->nbr < prev_nbr)
+		if (temp->nbr < nbr_pushed && temp->nbr > prev_nbr)
 		{
 			index = temp->index;
 			prev_nbr = temp->nbr;
 		}
 		temp = temp->next;
-	ft_printf("Debug point: nearest number in a stack: index = %d, value = %d\n", index, prev_nbr);
 	}
+	ft_printf("Debug point: the index after pushing of the given number: %d is %d\n", nbr_pushed, index);
 	return (index);
 }
