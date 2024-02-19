@@ -13,25 +13,64 @@
 #include "../include/push_swap.h"
 
 
-void ft_give_index_a(t_stack **a, t_data *data)
+void ft_give_index_a(t_stack **a)
 {
-    t_stack *temp = *a;
+    t_stack *temp;
     int index = 0;
-    int nbr = ft_elem_min(a);
+    int nbr;
     int prev_nbr;
+    int i;
 
-    while (temp)
+    temp = *a;
+    nbr = ft_elem_min(a);
+    ft_printf("Debug point: min = %d\n", nbr);
+    i = 0;
+    while (i < ft_stack_size(a))
     {
-        while (temp->nbr != nbr)
+        while (temp)
         {
-            temp->index = index;
-            prev_nbr = nbr;
-            nbr = ft_elem_min_higher_then_given(a, prev_nbr);
-            ft_printf("Debug point: index = %d, value = %d\n", temp->index, temp->nbr);
-            index++;
+            if (temp->nbr == nbr)
+            {
+                temp->index = index;
+                index++;
+                prev_nbr = nbr;
+                nbr = ft_elem_min_higher_than_given(a, prev_nbr);
+                ft_printf("Debug point: indexing index = %d, value = %d\n", temp->index, temp->nbr);
+            }
+            temp = temp->next;
         }
-        temp = temp->next;
+        temp = *a;
+        ft_printf("Debug point: i = %d\n", i);
+        i++;
     }
-    (void)data;
 }
 
+void ft_give_index_b(t_stack **a, t_stack **b)
+{
+    t_stack *temp;
+    int nbr;
+    int prev_nbr;
+    int i;
+
+    temp = *b;
+    nbr = ft_elem_min(b);
+    ft_printf("Debug point: min. value from stack b = %d\n", nbr);
+    i = 0;
+    while (i < ft_stack_size(b))
+    {
+        while (temp)
+        {
+            if (temp->nbr == nbr)
+            {
+                temp->index = ft_find_nearest_higher(a, temp->nbr);
+                prev_nbr = nbr;
+                nbr = ft_elem_min_higher_than_given(b, prev_nbr);
+                ft_printf("Debug point: indexing attempt index = %d, value = %d\n", temp->index, temp->nbr);
+            }
+            temp = temp->next;
+        }
+        temp = *b;
+        ft_printf("Debug point: i = %d\n", i);
+        i++;
+    }
+}

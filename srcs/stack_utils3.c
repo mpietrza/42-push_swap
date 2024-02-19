@@ -69,26 +69,24 @@ int	ft_find_index(t_stack **stack, int nbr)
 	return (-1);
 }
 
-int	ft_find_index_after_push(t_stack **stack, int nbr_pushed)
-{
-	int		i;
-	t_stack	*tmp;
 
-	i = 1;
-	if (nbr_pushed > (*stack)->nbr && nbr_pushed < ft_stack_last(*stack)->nbr)
-		i = 0;
-	else if (nbr_pushed > ft_elem_max(stack)
-		|| nbr_pushed < ft_elem_min(stack))
-		i = ft_find_index(stack, ft_elem_max(stack));
-	else
+int ft_find_nearest_higher(t_stack **stack, int nbr_pushed)
+{
+	int		prev_nbr;
+	int		index;
+	t_stack	*temp;
+
+	prev_nbr = INT_MAX;
+	temp = *stack;
+	while (temp)
 	{
-		tmp = (*stack)->next;
-		while ((*stack)->nbr < nbr_pushed || tmp->nbr >nbr_pushed)
+		if (temp->nbr > nbr_pushed && temp->nbr < prev_nbr)
 		{
-			(*stack) = (*stack)->next;
-			tmp = (*stack)->next;
-			i++;
+			index = temp->index;
+			prev_nbr = temp->nbr;
 		}
+		temp = temp->next;
+	ft_printf("Debug point: nearest number in a stack: index = %d, value = %d\n", index, prev_nbr);
 	}
-	return (i);
+	return (index);
 }

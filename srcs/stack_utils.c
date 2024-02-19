@@ -16,6 +16,8 @@ t_stack	*ft_stack_new(char name, long nbr)
 	return (new);
 }
 
+
+
 t_stack	*ft_stack_last(t_stack *stack)
 {
 	t_stack	*temp;
