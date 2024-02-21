@@ -40,7 +40,8 @@ bool	ft_data_parse(t_stack **a, t_data *data)
 	temp = *a;
 	while (temp)
 	{
-		ft_printf("Debug point: index = %d, value = %d\n", temp->index, temp->nbr);
+		ft_printf("Debug point: index = %d, value = %d\n",
+			temp->current_index, temp->nbr);
 		temp = temp->next;
 	}
 	if (j == data->argc)
@@ -68,17 +69,3 @@ bool	ft_duplicate_check(t_stack *a)
 	}
 	return (true);
 }
-/*
-bool	ft_is_int_check(t_stack *a)
-{
-	t_stack	*temp;
-
-	temp = a;
-	while (temp)
-	{
-		if (temp->nbr > INT_MAX || temp->nbr < INT_MIN)
-			return (false);
-		temp = temp->next;
-	}
-	return (true);
-}*/

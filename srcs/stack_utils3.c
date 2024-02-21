@@ -47,8 +47,9 @@ void ft_give_index(t_stack **stack)
 	i = 0;
 	while (temp)
 	{
-		temp->index = i;
-		ft_printf("Debug point: index = %d, value = %d\n", (int)temp->index, (int)temp->nbr);
+		temp->current_index = i;
+		ft_printf("Debug point: index = %d, value = %d\n",
+			(int)temp->current_index, (int)temp->nbr);
 		temp = temp->next;
 		i++;
 	}
@@ -83,7 +84,7 @@ int ft_find_nearest_higher(t_stack **stack, int nbr_pushed)
 	{
 		if (temp->nbr < nbr_pushed && temp->nbr > prev_nbr)
 		{
-			index = temp->index;
+			index = temp->current_index;
 			prev_nbr = temp->nbr;
 		}
 		temp = temp->next;

@@ -25,23 +25,36 @@ static void ft_stack_change_name(t_stack **stack)
 
 bool	ft_push(t_stack **stack_1, t_stack **stack_2)
 {
-	t_stack	*tmp = NULL;
+	t_stack	*temp = NULL;
 
 	if (!*stack_1)
 		return (false);
-	else if (*stack_1 && !*stack_2)
+	else if (!stack_2 || !(*stack_2))
 	{
+		temp = (*stack_1)->next;
 		*stack_2 = *stack_1;
-		*stack_1 = (*stack_1)->next;
 		(*stack_2)->next = NULL;
+		*stack_1 = temp;
+		ft_stack_change_name(stack_2);
+		if (*stack_1 && *stack_2)
+		{
+			ft_printf("Pushed %i from stack %c creating stack %c\n", (*stack_2)->nbr, (*stack_1)->name, (*stack_2)->name);
+			ft_printf("stack %c = %d, stack %c->next = %p\n", (*stack_2)->name, (*stack_2)->nbr, (*stack_2)->name, (*stack_2)->next);
+		}
 	}
-	else if (*stack_1 && *stack_2)
+	else if (*stack_2)
 	{
-		tmp = *stack_1;
-		*stack_1 = *stack_2;
-		*stack_2 = (*stack_2)->next;
-		(*stack_1)->next = tmp;
+		temp = (*stack_1)->next;
+		(*stack_1)->next = *stack_2;
+		*stack_2 = *stack_1;
+		*stack_1 = temp;
+		ft_stack_change_name(stack_2);
+		if (*stack_1 && *stack_2)
+			ft_printf("Pushed %i from stack %c to existing stack %c\n", (*stack_2)->nbr, (*stack_1)->name, (*stack_2)->name);
 	}
-	ft_stack_change_name(stack_2);
+	if (stack_1 && *stack_1)
+		ft_printf("p%c\n", (*stack_1)->name);
+	ft_print_stack(stack_1);
+	ft_print_stack(stack_2);
 	return (true);
 }

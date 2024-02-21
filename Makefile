@@ -34,9 +34,11 @@ W = "\033[37m"
 
 #SOURCES
 
-SRC			= data_parse_preparation.c \
+SRC			= actions_rr_rrr.c \
 			  data_init.c \
+			  data_parse_preparation.c \
 			  exit_free.c \
+			  find_cheapest.c \
 			  give_index.c \
 			  oprs_push.c \
 			  oprs_r_rotate.c \

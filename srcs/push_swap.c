@@ -35,9 +35,9 @@ bool	ft_range_bracket(t_stack **a, t_stack **b, t_data *data)
 		ft_range_2(a);
 	else if (data->argc == 4)
 		ft_range_3(a);
-	else if (data->argc >= 5 && data->argc <= 6)
+	else if (data->argc >= 5 && data->argc <= 10)
 		ft_range_s(a, b, data);
-//	else if (data->argc >=7 && argc <= 100)
+//	else if (data->argc >=11 && argc <= 100)
 //		ft_range_m(a, b, data);
 //	else if (data->argc >= 101)
 //		ft_range_l(a, b, data);
@@ -102,8 +102,6 @@ int	main(int argc, char **argv)
 		data = sub_main1(argc, argv);
 	if (!data)
 		return (0);
-	else
-		ft_printf("Debug point: data created\n");
 	if (ft_data_parse(&a, data) == false)
 		ft_free_and_exit(&a, &b, data, "Error\nMemory allocation failure!\n");
 	else if (data->atoi_error == true)
@@ -111,8 +109,6 @@ int	main(int argc, char **argv)
 	else if (data->is_int == false)
 		ft_free_and_exit(&a, &b, data,
 			"Error\nInput data error - use only numbers in the integer range!\n");
-	else
-		ft_printf("Debug point: data parsed to stack 'a'\n");
 	if (ft_is_stack_asc(&a) == true)
 	{
 		ft_printf("Debug point: stack is sorted\n");
@@ -121,16 +117,15 @@ int	main(int argc, char **argv)
 	else
 		ft_printf("Debug point: stack is not sorted\n");
 	if (ft_range_bracket(&a, &b, data) == false)
-	{
 		ft_free_and_exit(&a, &b, data, "Error\nInput data error!\n");
-	}
 	else
 	{
 		ft_printf("Debug point: sorting done\n");
 		temp = a;
 		while (temp)
 		{
-			ft_printf("Debug point: index = %d, value = %d\n", temp->index, temp->nbr);
+			ft_printf("Debug point: index = %d, value = %d\n",
+				temp->current_index, temp->nbr);
 			temp = temp->next;
 		}
 	}

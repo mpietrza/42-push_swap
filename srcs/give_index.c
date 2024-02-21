@@ -31,11 +31,12 @@ void ft_give_index_a(t_stack **a)
         {
             if (temp->nbr == nbr)
             {
-                temp->index = index;
+                temp->current_index = index;
                 index++;
                 prev_nbr = nbr;
                 nbr = ft_elem_min_higher_than_given(a, prev_nbr);
-                ft_printf("Debug point: indexing index = %d, value = %d\n", temp->index, temp->nbr);
+                ft_printf("Debug point: indexing index = %d, value = %d\n",
+                    temp->current_index, temp->nbr);
             }
             temp = temp->next;
         }
@@ -62,10 +63,11 @@ void ft_give_index_b(t_stack **a, t_stack **b)
         {
             if (temp->nbr == nbr)
             {
-                temp->index = ft_find_nearest_higher(a, temp->nbr);
+                temp->current_index = ft_find_nearest_higher(a, temp->nbr);
                 prev_nbr = nbr;
                 nbr = ft_elem_min_higher_than_given(b, prev_nbr);
-                ft_printf("Debug point: indexing attempt index = %d, value = %d\n", temp->index, temp->nbr);
+                ft_printf("Debug point: indexing attempt index = %d, value = %d\n",
+                    temp->current_index, temp->nbr);
             }
             temp = temp->next;
         }
@@ -86,7 +88,7 @@ void    ft_give_current_index(t_stack **stack)
     {
         temp->current_index = i;
         ft_printf("Debug point: current index = %d, index = %d, value = %d\n",
-            temp->current_index, temp->index, temp->nbr);
+            temp->current_index, temp->current_index, temp->nbr);
         temp = temp->next;
         i++;
     }

@@ -9,14 +9,12 @@ t_stack	*ft_stack_new(char name, long nbr)
 		return (NULL);
 	new->name = name;
 	new->nbr = nbr;
-	new->index = 0;
+	new->current_index = 0;
 	new->push_price = 0;
 	new->cheapest = false;
 	new->next = NULL;
 	return (new);
 }
-
-
 
 t_stack	*ft_stack_last(t_stack *stack)
 {
