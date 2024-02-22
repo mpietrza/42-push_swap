@@ -20,8 +20,7 @@ bool    ft_cheapest_move_b_to_a(t_stack **a, t_stack **b, t_data *data)
     temp = *a;
     temp2 = *b;
 
-    ft_print_stack(&temp);
-    ft_print_stack(&temp2);
+
     while (temp2)
     {
         if (temp2->cheapest == true)
@@ -49,6 +48,10 @@ bool    ft_cheapest_move_b_to_a(t_stack **a, t_stack **b, t_data *data)
     if (temp == NULL || temp2 == NULL)
         return (false);
     ft_what_rotation(a, b, data);
+    ft_push(b, a);
+
+    ft_print_stack(a);
+    ft_print_stack(b);
     return (true);
 }
 
@@ -61,6 +64,9 @@ void ft_what_rotation(t_stack **a, t_stack **b, t_data *data)
     temp2 = *b;
     while (temp->cheapest != true && temp2->cheapest != true)
     {
+        ft_printf("a->chpst = %d, cur_ind = %d\nb->chpst = %d, cur_ind = %d\n",
+            (int)temp->cheapest, (int)temp->current_index, (int)temp2->cheapest,
+            (int)temp2->current_index);
         if (temp->cheapest != 0 && temp2->cheapest != 0)
         {
             if (data->is_chpst_uppr_med_a == true
@@ -98,10 +104,4 @@ void ft_what_rotation(t_stack **a, t_stack **b, t_data *data)
         temp = *a;
         temp2 = *b;
     }
-    ft_push(b, a);
-    ft_printf("Debug point: push done\n");
-    ft_print_stack(&temp);
-    ft_print_stack(&temp2);
-    ft_give_current_index(a);
-    ft_give_current_index(b);
 }

@@ -90,10 +90,12 @@ void	ft_print_stack(t_stack **stack)
 	if (!*stack)
 		return ;
 	temp = *stack;
+	ft_printf("\nSTACK %c:\n", (*stack)->name);
 	while (temp)
 	{
-		ft_printf("name = %c, nbr = %d, target_index = %d, current_index = %d, is_upper_median = %d, push_index = %d, push_price = %d, cheapest = %d\n",
-			temp->name, (int)temp->nbr, (int)temp->target_index, (int)temp->current_index, (int)temp->is_upper_median, (int)temp->push_index, (int)temp->push_price, (int)temp->cheapest);
+		ft_printf("name = %c, nbr = %d, target_index = %d, current_index = %d, is_upper_median = %d, push_price = %d, cheapest = %d\n",
+			temp->name, (int)temp->nbr, (int)temp->target_index, (int)temp->current_index, (int)temp->is_upper_median, (int)temp->push_price, (int)temp->cheapest);
 		temp = temp->next;
 	}
+	ft_printf("------------------------------------------------------------------------------------------------------------\n\n");
 }

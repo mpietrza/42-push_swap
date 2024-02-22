@@ -45,17 +45,3 @@ void	ft_stack_add_bottom(t_stack **stack, t_stack *new)
 	else
 		*stack = new;
 }
-
-/*
-bool	ft_stack_init(t_stack **stack, char name, long nbr)
-{
-	*stack = calloc(1, sizeof(t_stack));
-	if (!*stack)
-		return (false);
-	(*stack)->name = name;
-	(*stack)->nbr = nbr;
-	(*stack)->index = 0;
-	(*stack)->next = NULL;
-	return (true);
-}*/
-

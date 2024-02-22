@@ -14,7 +14,7 @@
 
 void ft_range_s(t_stack **a, t_stack **b, t_data *data)
 {   
-	t_stack *temp;
+//	t_stack *temp;
 
 	while (ft_stack_size(a) > 3)
 	{
@@ -23,11 +23,13 @@ void ft_range_s(t_stack **a, t_stack **b, t_data *data)
 		ft_printf("Debug point: stack size after push = %d\n", ft_stack_size(a));
 	}
 	ft_range_3(a);
-	ft_give_index_a(a);
+	ft_give_target_index_a(a);
 	ft_give_current_index(a);
-	ft_give_index_b(a, b);
+	ft_give_target_index_b(a, b);
 	ft_give_current_index(b);
-	ft_find_cheapest(a, b, data);
+	ft_find_cheapest(a, b);
+	ft_print_stack(a);
+	ft_print_stack(b);
 	ft_printf("Debug: PUSHING BACK STARTS,\nft_stack_size of b = %d\n", ft_stack_size(b));
 	while (ft_stack_size(b) > 0)
 	{
@@ -36,14 +38,12 @@ void ft_range_s(t_stack **a, t_stack **b, t_data *data)
 			ft_printf("Debug: cheapest move error\n");
 			break ;
 		}
+		ft_give_target_index_a(a);
+		ft_give_current_index(a);
+		ft_give_target_index_b(a, b);
+		ft_give_current_index(b);
+		ft_find_cheapest(a, b);
 		ft_print_stack(a);
 		ft_print_stack(b);
-	}
-	temp = *a;
-	while (temp)
-	{
-		ft_printf("current index = %d, value = %d\n",
-			(int)temp->current_index, (int)temp->nbr);
-		temp = temp->next;
 	}
 }

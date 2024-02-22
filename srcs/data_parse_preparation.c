@@ -16,7 +16,7 @@ bool	ft_data_parse(t_stack **a, t_data *data)
 {
 	int		j;
 	long	num;
-	t_stack	*temp;
+//	t_stack	*temp;
 
 	*a = ft_stack_new('a', ft_atoi_ps(data->argv[1], data));
 	if (!*a || data->atoi_error == true)
@@ -27,22 +27,12 @@ bool	ft_data_parse(t_stack **a, t_data *data)
 	j = 2;
 	while (j < data->argc)
 	{
-		ft_printf("Debug point: data->argv[%d] = %s\n", j, data->argv[j]);
 		num = ft_atoi_ps(data->argv[j], data);
 		if (data->atoi_error == true)
 			return (false);
 		ft_printf("Debug point: parsed atoi'ed num = %d\n", (int)num);
 		ft_stack_add_bottom(a, ft_stack_new('a', num));
 		j++;
-	}
-
-	
-	temp = *a;
-	while (temp)
-	{
-		ft_printf("Debug point: index = %d, value = %d\n",
-			temp->current_index, temp->nbr);
-		temp = temp->next;
 	}
 	if (j == data->argc)
 		return (true);
