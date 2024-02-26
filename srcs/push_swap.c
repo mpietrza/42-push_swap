@@ -36,7 +36,7 @@ bool	ft_range_bracket(t_stack **a, t_stack **b, t_data *data)
 	else if (data->argc == 4)
 		ft_range_3(a);
 	else if (data->argc >= 5 && data->argc <= 10)
-		ft_range_s(a, b, data);
+		ft_range_s(a, b/*, data*/);
 //	else if (data->argc >=11 && argc <= 100)
 //		ft_range_m(a, b, data);
 //	else if (data->argc >= 101)

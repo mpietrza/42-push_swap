@@ -13,7 +13,7 @@
 #include "../include/push_swap.h"
 
 
-void ft_give_target_index_a(t_stack **a)
+void ft_give_target_index_asc(t_stack **a)
 {
     t_stack *temp;
     int index = 0;
@@ -42,8 +42,65 @@ void ft_give_target_index_a(t_stack **a)
         i++;
     }
 }
+void ft_give_target_index_desc(t_stack **b)
+{
+    t_stack *temp;
+    int index = 0;
+    int nbr;
+    int prev_nbr;
+    int i;
 
-void ft_give_target_index_b(t_stack **a, t_stack **b)
+    temp = *b;
+    nbr = ft_elem_max(b);
+    i = 0;
+    while (i < ft_stack_size(b))
+    {
+        while (temp)
+        {
+            if (temp->nbr == nbr)
+            {
+                temp->target_index = index;
+                index++;
+                prev_nbr = nbr;
+                nbr = ft_elem_max_lower_than_given(b, prev_nbr);
+                break;
+            }
+            temp = temp->next;
+        }
+        temp = *b;
+        i++;
+    }
+}
+
+
+
+void ft_give_push_index_a_to_b(t_stack **a, t_stack **b)
+{
+    t_stack *temp_a;
+    t_stack	*temp_b; 
+	long	index_best_match; 
+
+    temp_a = *a;
+	while (temp_a) 
+	{
+		index_best_match = LONG_MIN; 
+		temp_b = *b; 
+        while (temp_b)
+		{
+			if (temp_b->nbr < temp_a->nbr && temp_b->nbr > index_best_match)
+			{
+				index_best_match = temp_b->nbr; 
+				temp_a->push_index = temp_b->current_index;
+			}
+			temp_b = temp_b->next;
+		}
+		if (index_best_match == LONG_MIN)
+			temp_a->push_index = ft_stack_size(b); 
+		temp_a = temp_a->next;
+	}
+}
+
+void ft_give_push_index_b_to_a(t_stack **a, t_stack **b)
 {
     t_stack *temp;
     t_stack *temp2;
@@ -61,21 +118,16 @@ void ft_give_target_index_b(t_stack **a, t_stack **b)
         {
             if (temp->nbr > nbr)
             {
-                ft_printf("Debug: stack b value = %d, target index = %d\n", temp->nbr, temp->target_index);
-                temp2->target_index = temp->target_index;
+                temp2->push_index = temp->current_index;
                 prev_nbr = nbr;
-                ft_printf("Debug: nbr = %d\n", nbr);
                 nbr = ft_elem_min_higher_than_given(b, prev_nbr);
-                ft_printf("Debug: higher nbr then given form stack 'b' = %d\n", nbr);
                 break;
             }
             temp = temp->next;
         }
         if (temp == NULL)
         {
-            temp2->target_index = ft_give_current_index(a);
-            prev_nbr = nbr;
-            nbr = ft_elem_min_higher_than_given(b, prev_nbr);
+            temp2->target_index = 0;
         }
         temp2 = temp2->next;
         i++;

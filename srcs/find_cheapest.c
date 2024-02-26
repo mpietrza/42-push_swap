@@ -40,54 +40,60 @@ static void ft_check_stack_median(t_stack **stack, long median)
     }
 }
 
-void    ft_give_push_price(t_stack **a, t_stack **b)
+void    ft_give_push_price(t_stack **source, t_stack **target)
 {
-    t_stack *temp2;
-    long    median_a;
-    long    median_b;
+    t_stack *temp;
+    long    median_source;
+    long    median_target;
 
-    median_a = ft_find_median(a);
-    ft_printf("Debug point: median a = %d\n", median_a);
-    median_b = ft_find_median(b);
-    ft_printf("Debug point: median b = %d\n", median_b);
-    ft_check_stack_median(b, median_b);
+    ft_printf("Debug point: giving push price from %c to %c\n", 
+    (*source)->name, (*target)->name);
+    median_source = ft_find_median(source);
+    median_target = ft_find_median(target);
+    ft_check_stack_median(source, median_source);
+    ft_check_stack_median(target, median_target);
     
-    temp2 = *b;
-    while (temp2)
+    temp = *source;
+    if (temp == NULL)
     {
-        if (temp2->target_index <= median_a && temp2->is_upper_median == true)
-            temp2->push_price = temp2->target_index + temp2->current_index;
-        else if (temp2->current_index > median_a && temp2->is_upper_median == false)
-        {
-            temp2->push_price = ft_stack_size(a) - temp2->target_index
-            + ft_stack_size(b) - temp2->current_index;
-        }
-        else if (temp2->target_index > median_a && temp2->is_upper_median == true)
-        {
-            temp2->push_price = ft_stack_size(a) - temp2->target_index
-            + temp2->current_index;
-        }
-        else if (temp2->target_index <= median_a && temp2->is_upper_median == false)
-        {
-            temp2->push_price = temp2->target_index
-            + ft_stack_size(b) - temp2->current_index;
-        }
-        temp2 = temp2->next;
-        ft_print_stack(b);
+        ft_printf("Error\nStack is NULL\n");
+        return ;
     }
+    while (temp)
+    {
+        if (temp->target_index <= median_target && temp->is_upper_median == true)
+            temp->push_price = temp->target_index + temp->current_index;
+        else if (temp->current_index > median_target && temp->is_upper_median == false)
+        {
+            temp->push_price = ft_stack_size(target) - temp->target_index
+            + ft_stack_size(source) - temp->current_index;
+        }
+        else if (temp->target_index > median_target && temp->is_upper_median == true)
+        {
+            temp->push_price = ft_stack_size(target) - temp->target_index
+            + temp->current_index;
+        }
+        else if (temp->target_index <= median_target && temp->is_upper_median == false)
+        {
+            temp->push_price = temp->target_index
+            + ft_stack_size(source) - temp->current_index;
+        }
+        temp = temp->next; 
+    }
+    ft_printf("Debug point: ft_give push_price successful\n");
 }
 
 
-static bool	ft_find_cheapest_node(t_stack **stack)
+static bool	ft_find_cheapest_node(t_stack **source, t_stack **target)
 {
 	t_stack	*temp;
     t_stack *cheapest = NULL;
 	int     prev_push_price;
     int     prev_cur_index;
 
-    if (!*stack || !stack)
+    if (!*source || !source)
 		return (false);
-	temp = *stack;
+	temp = *source;
     prev_cur_index = INT_MAX;
 	prev_push_price = INT_MAX;
 	while (temp)
@@ -111,10 +117,19 @@ static bool	ft_find_cheapest_node(t_stack **stack)
         return (false);
     cheapest->cheapest = true;
     return (true);
+    temp = *target;
+    while (temp && temp->current_index != cheapest->target_index) // Add null check
+        temp = temp->next;
+    if (temp == NULL)
+        return (false);
+    else
+        temp->cheapest = true;
+    ft_printf("Debug point: cheapest node found\n");
+    return (true);
 }
 
-void    ft_find_cheapest(t_stack **a, t_stack **b)
+void    ft_find_cheapest(t_stack **source, t_stack **target)
 {
-    ft_give_push_price(a, b);
-    ft_find_cheapest_node(b);
+    ft_give_push_price(source, target);
+    ft_find_cheapest_node(source, target);
 }
