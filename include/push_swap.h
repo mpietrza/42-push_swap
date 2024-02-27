@@ -73,7 +73,8 @@ int		ft_give_current_index(t_stack **stack);
 void	ft_give_target_index_asc(t_stack **a);
 void	ft_give_target_index_desc(t_stack **b);
 void	ft_give_push_index_a_to_b(t_stack **a, t_stack **b);
-void	ft_give_push_index_b_to_a(t_stack **a, t_stack **b);
+void	ft_give_push_index_b_1_node_to_a(t_stack **b, t_stack **a);
+void	ft_give_push_index_b_to_a(t_stack **b, t_stack **a);
 void	ft_give_push_price(t_stack **a, t_stack **b);
 int		ft_find_nearest_higher(t_stack **stack, int nbr_to_push);
 bool	ft_is_stack_asc(t_stack **stack);
@@ -90,7 +91,8 @@ bool	ft_swap(t_stack **stack);
 bool	ft_range_bracket(t_stack **a, t_stack **b, t_data *data);
 void	ft_range_2(t_stack **a);
 void	ft_range_3(t_stack **a);
-void	ft_range_s(t_stack **a, t_stack **b/*, t_data *data*/);
+void	ft_range_4(t_stack **a, t_stack **b);
+void	ft_range_s(t_stack **a, t_stack **b, t_data *data);
 void	ft_stack_add_bottom(t_stack **stack, t_stack *new);
 void	ft_stack_add_top(t_stack **stack, t_stack *new);
 void	ft_stack_free(t_stack **stack);
@@ -104,3 +106,4 @@ void    ft_what_rotation_1_stack(t_stack **stack, t_data *data);
 t_data	*sub_main1(int argc, char **argv);
 
 #endif
+

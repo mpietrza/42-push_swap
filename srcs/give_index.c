@@ -72,8 +72,6 @@ void ft_give_target_index_desc(t_stack **b)
     }
 }
 
-
-
 void ft_give_push_index_a_to_b(t_stack **a, t_stack **b)
 {
     t_stack *temp_a;
@@ -100,37 +98,50 @@ void ft_give_push_index_a_to_b(t_stack **a, t_stack **b)
 	}
 }
 
-void ft_give_push_index_b_to_a(t_stack **a, t_stack **b)
+void ft_give_push_index_b_1_node_to_a(t_stack **b, t_stack **a)
 {
-    t_stack *temp;
-    t_stack *temp2;
-    int nbr;
-    int prev_nbr;
-    int i;
+    /*have to find the lowest higer value in stack a*/
+    t_stack *temp_a;
+    long    index_best_match;
 
-    temp2 = *b;
-    nbr = ft_elem_min(b);
-    i = 0;
-    while (i < ft_stack_size(b))
+    index_best_match = LONG_MAX;
+    temp_a = *a;
+    while (temp_a)
     {
-        temp = *a;
-        while (temp)
+        if (temp_a->nbr > (*b)->nbr && temp_a->nbr < index_best_match)
         {
-            if (temp->nbr > nbr)
+            index_best_match = temp_a->nbr;
+            (*b)->push_index = temp_a->current_index;
+        }
+        temp_a = temp_a->next;
+    }
+    if (index_best_match == LONG_MAX)
+        (*b)->target_index = 0;
+}
+
+void ft_give_push_index_b_to_a(t_stack **b, t_stack **a)
+{
+    t_stack *temp_a;
+    t_stack *temp_b;
+    long    index_best_match;
+
+    temp_b = *b;
+    while (temp_b)
+    {   
+        index_best_match = LONG_MAX;
+        temp_a = *a;
+        while (temp_a)
+        {
+            if (temp_a->nbr > temp_b->nbr && temp_a->nbr < index_best_match)
             {
-                temp2->push_index = temp->current_index;
-                prev_nbr = nbr;
-                nbr = ft_elem_min_higher_than_given(b, prev_nbr);
-                break;
+                index_best_match = temp_a->nbr;
+                temp_b->push_index = temp_a->current_index;
             }
-            temp = temp->next;
+            temp_a = temp_a->next;
         }
-        if (temp == NULL)
-        {
-            temp2->target_index = 0;
-        }
-        temp2 = temp2->next;
-        i++;
+        if (index_best_match == LONG_MAX)
+            temp_b->target_index = ft_stack_size(a);
+        temp_b = temp_b->next;
     }
 }
 

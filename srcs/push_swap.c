@@ -27,22 +27,29 @@ bool	ft_check_argv(int argc, char **argv)
 
 bool	ft_range_bracket(t_stack **a, t_stack **b, t_data *data)
 {
+	ft_printf("data->argc = %d\n", data->argc);
 	if (ft_duplicate_check(*a) == false)
+	{
+		ft_printf("Debug point: found duplicates\n");
 		return (false);
+	}
 	if (data->argc == 2)
 		return (true);
 	else if (data->argc == 3)
 		ft_range_2(a);
 	else if (data->argc == 4)
 		ft_range_3(a);
-	else if (data->argc >= 5 && data->argc <= 10)
-		ft_range_s(a, b/*, data*/);
-//	else if (data->argc >=11 && argc <= 100)
-//		ft_range_m(a, b, data);
-//	else if (data->argc >= 101)
-//		ft_range_l(a, b, data);
+	else if (data->argc == 5)
+		ft_range_4(a, b);
+/*else if (data->argc == 6)
+		ft_range_5(a, b, data);*/
+	else if (data->argc >= 6 && data->argc <= 10)
+		ft_range_s(a, b, data);
 	else
+	{
+		ft_printf("data->argc = %d\n", data->argc);	
 		return (false);
+	}
 	return (true);
 }
 
@@ -105,7 +112,7 @@ int	main(int argc, char **argv)
 	if (ft_data_parse(&a, data) == false)
 		ft_free_and_exit(&a, &b, data, "Error\nMemory allocation failure!\n");
 	else if (data->atoi_error == true)
-		ft_free_and_exit(&a, &b, data, "Error\nInput data error!\n");
+		ft_free_and_exit(&a, &b, data, "Error\nInput data error - atoi error!\n");
 	else if (data->is_int == false)
 		ft_free_and_exit(&a, &b, data,
 			"Error\nInput data error - use only numbers in the integer range!\n");
@@ -117,7 +124,7 @@ int	main(int argc, char **argv)
 	else
 		ft_printf("Debug point: stack is not sorted\n");
 	if (ft_range_bracket(&a, &b, data) == false)
-		ft_free_and_exit(&a, &b, data, "Error\nInput data error!\n");
+		ft_free_and_exit(&a, &b, data, "Error\nInput data error - range bracket!\n");
 	else
 	{
 		ft_printf("Debug point: sorting done\n");

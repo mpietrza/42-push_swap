@@ -15,7 +15,6 @@
 bool	ft_is_str_num(char *s)
 {
 	int	i;
-//	int	j;
 
 	i = 0;
 	if (s[0])
