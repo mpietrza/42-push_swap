@@ -19,6 +19,8 @@ void	ft_range_2(t_stack **a)
 
 void	ft_range_3(t_stack **a)
 {
+	if (ft_is_stack_asc(a) == true)
+		return ;
 	if (ft_elem_min(a) == (*a)->nbr)
 	{
 		ft_rev_rotate(a);

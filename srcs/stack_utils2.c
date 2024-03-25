@@ -84,7 +84,7 @@ int	ft_elem_max(t_stack **stack)
 	return (i);
 }
 
-int	ft_stack_size(t_stack **stack)
+long	ft_stack_size(t_stack **stack)
 {
 	int	i;
 	t_stack	*temp = NULL;

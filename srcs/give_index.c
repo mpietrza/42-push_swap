@@ -12,64 +12,28 @@
 
 #include "../include/push_swap.h"
 
-
-void ft_give_target_index_asc(t_stack **a)
+void    ft_give_target_index_asc(t_stack **a)
 {
     t_stack *temp;
-    int index = 0;
-    int nbr;
-    int prev_nbr;
-    int i;
+    int     nbr;
+    int     i;
 
     temp = *a;
     nbr = ft_elem_min(a);
     i = 0;
     while (i < ft_stack_size(a))
     {
-        while (temp)
-        {
-            if (temp->nbr == nbr)
-            {
-                temp->target_index = index;
-                index++;
-                prev_nbr = nbr;
-                nbr = ft_elem_min_higher_than_given(a, prev_nbr);
-                break;
-            }
+        while (temp->nbr != nbr)
             temp = temp->next;
-        }
-        temp = *a;
-        i++;
-    }
-}
-void ft_give_target_index_desc(t_stack **b)
-{
-    t_stack *temp;
-    int index = 0;
-    int nbr;
-    int prev_nbr;
-    int i;
-
-    temp = *b;
-    nbr = ft_elem_max(b);
-    i = 0;
-    while (i < ft_stack_size(b))
-    {
-        while (temp)
+        if (temp)
         {
-            if (temp->nbr == nbr)
-            {
-                temp->target_index = index;
-                index++;
-                prev_nbr = nbr;
-                nbr = ft_elem_max_lower_than_given(b, prev_nbr);
-                break;
-            }
-            temp = temp->next;
+            temp->target_index = i++;
+            nbr = ft_elem_min_higher_than_given(a, nbr);
+            temp = *a;
         }
-        temp = *b;
-        i++;
-    }
+        else
+            break;
+      }
 }
 
 void ft_give_push_index_a_to_b(t_stack **a, t_stack **b)
@@ -104,7 +68,7 @@ void ft_give_push_index_b_1_node_to_a(t_stack **b, t_stack **a)
     t_stack *temp_a;
     long    index_best_match;
 
-    index_best_match = LONG_MAX;
+    index_best_match = INT_MAX;
     temp_a = *a;
     while (temp_a)
     {
@@ -115,20 +79,22 @@ void ft_give_push_index_b_1_node_to_a(t_stack **b, t_stack **a)
         }
         temp_a = temp_a->next;
     }
-    if (index_best_match == LONG_MAX)
+    if (index_best_match == INT_MAX)
         (*b)->target_index = 0;
 }
 
+
 void ft_give_push_index_b_to_a(t_stack **b, t_stack **a)
 {
+    /*have to find the lowest higer value in stack a*/
     t_stack *temp_a;
     t_stack *temp_b;
-    long    index_best_match;
+    int index_best_match;
 
     temp_b = *b;
     while (temp_b)
     {   
-        index_best_match = LONG_MAX;
+        index_best_match = INT_MAX;
         temp_a = *a;
         while (temp_a)
         {
@@ -139,13 +105,13 @@ void ft_give_push_index_b_to_a(t_stack **b, t_stack **a)
             }
             temp_a = temp_a->next;
         }
-        if (index_best_match == LONG_MAX)
-            temp_b->target_index = ft_stack_size(a);
+        if (index_best_match == INT_MAX)
+            temp_b->push_index = ft_stack_size(a);
         temp_b = temp_b->next;
     }
 }
 
-int    ft_give_current_index(t_stack **stack)
+long    ft_give_current_index(t_stack **stack)
 {
     t_stack *temp;
     int i;

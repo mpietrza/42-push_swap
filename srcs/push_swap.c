@@ -41,10 +41,10 @@ bool	ft_range_bracket(t_stack **a, t_stack **b, t_data *data)
 		ft_range_3(a);
 	else if (data->argc == 5)
 		ft_range_4(a, b);
-/*else if (data->argc == 6)
-		ft_range_5(a, b, data);*/
-	else if (data->argc >= 6 && data->argc <= 10)
-		ft_range_s(a, b, data);
+	else if (data->argc >= 6)
+		ft_range_5(a, b/*, data*/);
+/*	else if (data->argc >= 6 && data->argc <= 10)
+		ft_range_s(a, b, data);*/
 	else
 	{
 		ft_printf("data->argc = %d\n", data->argc);	
@@ -98,7 +98,6 @@ int	main(int argc, char **argv)
 	t_data	*data = NULL;
 	t_stack	*a = NULL;
 	t_stack	*b = NULL;
-	t_stack	*temp = NULL;
 
 	if (argc == 1)
 		return (0);
@@ -117,24 +116,16 @@ int	main(int argc, char **argv)
 		ft_free_and_exit(&a, &b, data,
 			"Error\nInput data error - use only numbers in the integer range!\n");
 	if (ft_is_stack_asc(&a) == true)
-	{
-		ft_printf("Debug point: stack is sorted\n");
 		ft_exit_succesful(&a, &b, data);
-	}
 	else
 		ft_printf("Debug point: stack is not sorted\n");
 	if (ft_range_bracket(&a, &b, data) == false)
 		ft_free_and_exit(&a, &b, data, "Error\nInput data error - range bracket!\n");
 	else
 	{
-		ft_printf("Debug point: sorting done\n");
-		temp = a;
-		while (temp)
-		{
-			ft_printf("Debug point: index = %d, value = %d\n",
-				temp->current_index, temp->nbr);
-			temp = temp->next;
-		}
+		ft_print_stack(&a);
+		if (b)
+			ft_print_stack(&b);
 	}
 	ft_exit_succesful(&a, &b, data);
 	return (0);
