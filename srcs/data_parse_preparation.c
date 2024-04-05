@@ -16,30 +16,23 @@ bool	ft_data_parse(t_stack **a, t_data *data)
 {
 	int		j;
 	long	num;
-//	t_stack	*temp;
 
 	*a = ft_stack_new('a', ft_atoi_ps(data->argv[1], data));
 	if (!*a || data->atoi_error == true)
 		return (false);
-	else
-		ft_printf("Debug point: stack 'a' created, 1st num stacked\n");
-	ft_printf("Debug point: argc = %d\n", data->argc);
 	j = 2;
 	while (j < data->argc)
 	{
 		num = ft_atoi_ps(data->argv[j], data);
 		if (data->atoi_error == true)
 			return (false);
-		ft_printf("Debug point: parsed atoi'ed num = %d\n", (int)num);
 		ft_stack_add_bottom(a, ft_stack_new('a', num));
 		j++;
 	}
 	if (j == data->argc)
 		return (true);
 	else
-	{
 		return (false);
-	}
 }
 
 bool	ft_duplicate_check(t_stack *a)

@@ -85,7 +85,6 @@ bool    ft_cheapest_move(t_stack **b, t_stack **a)
     uppr_med_b = temp->is_upper_median;
     if ((*b)->push_index == ft_stack_size(a))
     {
-        ft_printf("Debug point: cheapest move 1\n");
         while ((*a)->target_index != 0)
         {
             if (uppr_med_a == true)
@@ -98,7 +97,6 @@ bool    ft_cheapest_move(t_stack **b, t_stack **a)
     }
     else
     {
-        ft_printf("Debug point: cheapest move 2\n");
         while ((*a)->cheapest == false || (*b)->cheapest == false)
         {
             ft_what_rotation(a, b, uppr_med_a, uppr_med_b);
@@ -116,15 +114,12 @@ void    ft_final_rotations(t_stack **a)
 {
     if ((*a)->target_index <= ft_stack_size(a) / 2)
     {
-        ft_printf("Debug point: final rotations 1\n");
         while ((*a)->target_index != 0)
             ft_rev_rotate(a);
     }
     else
     {
-        ft_printf("Debug point: final rotations 2\n");
         while ((*a)->target_index != 0)
             ft_rotate(a);
     }
 }
-    

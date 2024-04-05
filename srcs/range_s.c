@@ -52,12 +52,8 @@ void	ft_range_5(t_stack **a, t_stack **b)
 		ft_give_target_index_asc(a);
 		ft_give_push_index_b_to_a(b, a);
 		ft_find_cheapest(b, a);
-		ft_print_stack(a);
-		ft_print_stack(b);
 		ft_cheapest_move(b, a);
 		ft_give_target_index_asc(a);
-		ft_print_stack(a);
-		ft_print_stack(b);
 	}
 	ft_final_rotations(a);
 }

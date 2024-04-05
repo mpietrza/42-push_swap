@@ -25,7 +25,6 @@ static bool ft_swap_core(t_stack **stack)
 	return (true);
 }
 
-
 bool	ft_swap(t_stack **stack)
 {
 	if (ft_swap_core(stack) == false)

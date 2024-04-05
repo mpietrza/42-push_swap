@@ -83,7 +83,7 @@ int	ft_fake_argc(char *s)
 				fake_argc++;
 			is_space = false;
 		}
-		else if (s[i] == ' ')		
+		else if (s[i] == ' ')
 			is_space = true;
 		else if (s[i] != '-')
 			return (0);
@@ -105,4 +105,3 @@ char	**ft_fake_argv(char **argv)
 	free(s);
 	return (fake_argv);
 }
-

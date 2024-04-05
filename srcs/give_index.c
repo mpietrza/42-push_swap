@@ -64,7 +64,6 @@ void ft_give_push_index_a_to_b(t_stack **a, t_stack **b)
 
 void ft_give_push_index_b_1_node_to_a(t_stack **b, t_stack **a)
 {
-    /*have to find the lowest higer value in stack a*/
     t_stack *temp_a;
     long    index_best_match;
 
@@ -86,7 +85,6 @@ void ft_give_push_index_b_1_node_to_a(t_stack **b, t_stack **a)
 
 void ft_give_push_index_b_to_a(t_stack **b, t_stack **a)
 {
-    /*have to find the lowest higer value in stack a*/
     t_stack *temp_a;
     t_stack *temp_b;
     int index_best_match;

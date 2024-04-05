@@ -27,12 +27,8 @@ bool	ft_check_argv(int argc, char **argv)
 
 bool	ft_range_bracket(t_stack **a, t_stack **b, t_data *data)
 {
-	ft_printf("data->argc = %d\n", data->argc);
 	if (ft_duplicate_check(*a) == false)
-	{
-		ft_printf("Debug point: found duplicates\n");
 		return (false);
-	}
 	if (data->argc == 2)
 		return (true);
 	else if (data->argc == 3)
@@ -42,14 +38,9 @@ bool	ft_range_bracket(t_stack **a, t_stack **b, t_data *data)
 	else if (data->argc == 5)
 		ft_range_4(a, b);
 	else if (data->argc >= 6)
-		ft_range_5(a, b/*, data*/);
-/*	else if (data->argc >= 6 && data->argc <= 10)
-		ft_range_s(a, b, data);*/
+		ft_range_5(a, b);
 	else
-	{
-		ft_printf("data->argc = %d\n", data->argc);	
 		return (false);
-	}
 	return (true);
 }
 
@@ -61,7 +52,6 @@ t_data	*sub_main1(int argc, char **argv)
 
 	fake_argc = 0;
 	data = calloc(1, sizeof(t_data));
-	ft_printf("Debug point: data created\n");
 	if (!data)
 		ft_error_exit("Error\nMemory allocation for 'data' failure!\n");
 	if (argc == 2 && argv[1][0] != ' '
@@ -72,22 +62,14 @@ t_data	*sub_main1(int argc, char **argv)
 			ft_error_exit("Error\nProblem with the data input!\n");
 		else if (fake_argc == 1 || fake_argc == 2)
 			return (NULL);
-		ft_printf("Debug point: fake_argc created\n");
 		fake_argv = ft_fake_argv(argv);
 		if (!fake_argv)
 			ft_error_exit("Error\nMemory allocation for 'fake_argv' failure!\n");
-		ft_printf("Debug point: fake_argv initialized\n");
 	}
 	if (fake_argc == 0 && fake_argv == NULL)
-	{
 		ft_data_init(data, argv, argc, false);
-		ft_printf("Debug point: data initialized without fake argv and argc\n");
-	}
 	else if (fake_argc > 0 && fake_argv != NULL)
-	{
 		ft_data_init(data, fake_argv, fake_argc, true);
-		ft_printf("Debug point: data initialized with fake argv and argc\n");
-	}
 	else
 		ft_error_exit("Error\nMemory inicialization of 'data' failure!\n");
 	return (data);
@@ -121,12 +103,6 @@ int	main(int argc, char **argv)
 		ft_printf("Debug point: stack is not sorted\n");
 	if (ft_range_bracket(&a, &b, data) == false)
 		ft_free_and_exit(&a, &b, data, "Error\nInput data error - range bracket!\n");
-	else
-	{
-		ft_print_stack(&a);
-		if (b)
-			ft_print_stack(&b);
-	}
 	ft_exit_succesful(&a, &b, data);
 	return (0);
 }

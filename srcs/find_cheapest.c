@@ -111,7 +111,6 @@ static bool	ft_find_cheapest_node(t_stack **b, t_stack **a)
     if (cheapest == NULL)
         return (false);
     cheapest->cheapest = true;
-    ft_printf("Debug point: cheapest source node found\n");
     temp = *a;
     while (temp->next && temp->current_index != cheapest->push_index)
         temp = temp->next;
@@ -119,7 +118,6 @@ static bool	ft_find_cheapest_node(t_stack **b, t_stack **a)
         (*a)->cheapest = true;
     else
         temp->cheapest = true;
-    ft_printf("Debug point: cheapest target node found\n");
     return (true);
 }
 
