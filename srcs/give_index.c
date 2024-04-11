@@ -36,7 +36,7 @@ void    ft_give_target_index_asc(t_stack **a)
       }
 }
 
-void ft_give_push_index_a_to_b(t_stack **a, t_stack **b)
+/*void ft_give_push_index_a_to_b(t_stack **a, t_stack **b)
 {
     t_stack *temp_a;
     t_stack	*temp_b; 
@@ -60,7 +60,7 @@ void ft_give_push_index_a_to_b(t_stack **a, t_stack **b)
 			temp_a->push_index = ft_stack_size(b); 
 		temp_a = temp_a->next;
 	}
-}
+}*/
 
 void ft_give_push_index_b_1_node_to_a(t_stack **b, t_stack **a)
 {
@@ -81,7 +81,6 @@ void ft_give_push_index_b_1_node_to_a(t_stack **b, t_stack **a)
     if (index_best_match == INT_MAX)
         (*b)->target_index = 0;
 }
-
 
 void ft_give_push_index_b_to_a(t_stack **b, t_stack **a)
 {
