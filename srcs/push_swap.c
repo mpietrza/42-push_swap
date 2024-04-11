@@ -31,24 +31,20 @@ bool	ft_range_bracket(t_stack **a, t_stack **b, t_data *data)
 	return (true);
 }
 
-t_data	*sub_main1(int argc, char **argv)
+void	string_to_args(t_data *data, int argc, char **argv)
 {
 	int		fake_argc;
-	char	**fake_argv = NULL;
-	t_data	*data;
+	char	**fake_argv;
 
 	fake_argc = 0;
-	data = calloc(1, sizeof(t_data));
-	if (!data)
-		ft_error_exit("Error\nMemory allocation for 'data' failure!\n");
-	if (argc == 2 && argv[1][0] != ' '
-		&& (ft_strchr(argv[1], ' ') != NULL))
+	fake_argv = NULL;
+	if (argc == 2 && argv[1][0] != ' ' && (ft_strchr(argv[1], ' ') != NULL))
 	{
 		fake_argc = ft_fake_argc(argv[1]);
 		if (fake_argc == 0)
 			ft_error_exit("Error\nProblem with the data input!\n");
 		else if (fake_argc == 1 || fake_argc == 2)
-			return (NULL);
+			exit(EXIT_SUCCESS);
 		fake_argv = ft_fake_argv(argv);
 		if (!fake_argv)
 			ft_error_exit("Error\nMemory allocation for 'fake_argv' failure!\n");
@@ -59,7 +55,6 @@ t_data	*sub_main1(int argc, char **argv)
 		ft_data_init(data, fake_argv, fake_argc, true);
 	else
 		ft_error_exit("Error\nMemory inicialization of 'data' failure!\n");
-	return (data);
 }
 
 int	main(int argc, char **argv)
@@ -68,28 +63,26 @@ int	main(int argc, char **argv)
 	t_stack	*a = NULL;
 	t_stack	*b = NULL;
 
-	if (argc == 1)
-		return (0);
-	else if (argc == 2
-		&& (ft_strchr(argv[1], ' ') == NULL || argv[1][0] == '\0'))
+	if (argc == 1 || (argc == 2 && (ft_strchr(argv[1], ' ') == NULL
+		|| argv[1][0] == '\0')))
 		return (0);
 	else
-		data = sub_main1(argc, argv);
-	if (!data)
-		return (0);
+	{
+		data = calloc(1, sizeof(t_data));
+		if (!data)
+			ft_error_exit("Error\nMemory allocation for 'data' failure!\n");
+		string_to_args(data, argc, argv);
+	}
 	if (ft_data_parse(&a, data) == false)
 		ft_free_and_exit(&a, &b, data, "Error\nMemory allocation failure!\n");
 	else if (data->atoi_error == true)
-		ft_free_and_exit(&a, &b, data, "Error\nInput data error - atoi error!\n");
+		ft_free_and_exit(&a, &b, data, "Error\nAtoi error!\n");
 	else if (data->is_int == false)
-		ft_free_and_exit(&a, &b, data,
-			"Error\nInput data error - use only numbers in the integer range!\n");
+		ft_free_and_exit(&a, &b, data, "Error\nInput data - only integers!\n");
 	if (ft_is_stack_asc(&a) == true)
 		ft_exit_succesful(&a, &b, data);
-	else
-		ft_printf("Debug point: stack is not sorted\n");
 	if (ft_range_bracket(&a, &b, data) == false)
-		ft_free_and_exit(&a, &b, data, "Error\nInput data error - range bracket!\n");
+		ft_free_and_exit(&a, &b, data, "Error\nRange bracket!\n");
 	ft_exit_succesful(&a, &b, data);
 	return (0);
 }

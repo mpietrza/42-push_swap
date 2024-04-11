@@ -14,53 +14,27 @@
 
 void    ft_give_target_index_asc(t_stack **a)
 {
-    t_stack *temp;
+    t_stack *temp_a;
     int     nbr;
     int     i;
 
-    temp = *a;
+    temp_a = *a;
     nbr = ft_elem_min(a);
     i = 0;
     while (i < ft_stack_size(a))
     {
-        while (temp->nbr != nbr)
-            temp = temp->next;
-        if (temp)
+        while (temp_a->nbr != nbr)
+            temp_a = temp_a->next;
+        if (temp_a)
         {
-            temp->target_index = i++;
+            temp_a->target_index = i++;
             nbr = ft_elem_min_higher_than_given(a, nbr);
-            temp = *a;
+            temp_a = *a;
         }
         else
             break;
       }
 }
-
-/*void ft_give_push_index_a_to_b(t_stack **a, t_stack **b)
-{
-    t_stack *temp_a;
-    t_stack	*temp_b; 
-	long	index_best_match; 
-
-    temp_a = *a;
-	while (temp_a) 
-	{
-		index_best_match = LONG_MIN; 
-		temp_b = *b; 
-        while (temp_b)
-		{
-			if (temp_b->nbr < temp_a->nbr && temp_b->nbr > index_best_match)
-			{
-				index_best_match = temp_b->nbr; 
-				temp_a->push_index = temp_b->current_index;
-			}
-			temp_b = temp_b->next;
-		}
-		if (index_best_match == LONG_MIN)
-			temp_a->push_index = ft_stack_size(b); 
-		temp_a = temp_a->next;
-	}
-}*/
 
 void ft_give_push_index_b_1_node_to_a(t_stack **b, t_stack **a)
 {

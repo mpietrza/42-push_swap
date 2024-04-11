@@ -50,7 +50,6 @@ SRC			= actions_rr_rrr.c \
 			  stack_utils.c \
 			  stack_utils2.c \
 			  stack_utils3.c \
-			  stack_utils4.c \
 			  utils.c \
 			  what_rotation.c
 			 

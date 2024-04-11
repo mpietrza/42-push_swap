@@ -12,96 +12,78 @@
 
 #include "../include/push_swap.h"
  
-int	ft_elem_min(t_stack **stack)
+long	ft_elem_min(t_stack **stack)
 {
 	t_stack	*temp;
-	int	i;
+	long	nbr;
 
 	if (!*stack || !stack)
 		return (INT_MAX);
 	temp = *stack;
-	i = temp->nbr;
+	nbr = temp->nbr;
 	while (temp)
 	{
-		if (temp->nbr < i)
-			i = temp->nbr;
+		if (temp->nbr < nbr)
+			nbr = temp->nbr;
 		temp = temp->next;
 	}
-	return (i);
+	return (nbr);
 }
 
-int	ft_elem_min_higher_than_given(t_stack **stack, int given)
+long	ft_elem_min_higher_than_given(t_stack **stack, int given)
 {
 	t_stack	*temp;
-	int	i;
+	long	nbr;
 
 	if (!*stack || !stack)
 		return (INT_MAX);
 	temp = *stack;
-	i = INT_MAX;
+	nbr = INT_MAX;
 	while (temp)
 	{
-		if (temp->nbr < i && temp->nbr > given)
-			i = temp->nbr;
+		if (temp->nbr < nbr && temp->nbr > given)
+			nbr = temp->nbr;
 		temp = temp->next;
 	}
-	return (i);
+	return (nbr);
 }
 
-int	ft_elem_max_lower_than_given(t_stack **stack, int given)
+long	ft_elem_max(t_stack **stack)
 {
 	t_stack	*temp;
-	int	i;
+	long	nbr;
 
 	if (!*stack || !stack)
 		return (INT_MIN);
 	temp = *stack;
-	i = INT_MIN;
+	nbr = temp->nbr;
 	while (temp)
 	{
-		if (temp->nbr > i && temp->nbr < given)
-			i = temp->nbr;
+		if (temp->nbr > nbr)
+			nbr = temp->nbr;
 		temp = temp->next;
 	}
-	return (i);
-}
-
-int	ft_elem_max(t_stack **stack)
-{
-	t_stack	*temp;
-	int	i;
-
-	if (!*stack || !stack)
-		return (INT_MIN);
-	temp = *stack;
-	i = temp->nbr;
-	while (temp)
-	{
-		if (temp->nbr > i)
-			i = temp->nbr;
-		temp = temp->next;
-	}
-	return (i);
+	return (nbr);
 }
 
 long	ft_stack_size(t_stack **stack)
 {
-	int	i;
+	long	size;
 	t_stack	*temp = NULL;
 
 	if (!*stack)
 		return (0);
-	i = 1;
+	size = 1;
 	temp = *stack;
 	while (temp->next)
 	{
 		temp = temp->next;
-		i++;
+		size++;
 	}
-	return (i);
+	return (size);
 }
 
-void	ft_print_stack(t_stack **stack)
+/*void	ft_stack_print(t_stack **stack)
 {
 	t_stack	*temp;
 
@@ -116,4 +98,4 @@ void	ft_print_stack(t_stack **stack)
 		temp = temp->next;
 	}
 	ft_printf("------------------------------------------------------------------------------------------------------------\n\n");
-}
+}*/

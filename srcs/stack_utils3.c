@@ -18,10 +18,7 @@ bool	ft_is_stack_asc(t_stack **stack)
 	t_stack	*temp;
 
 	if (!stack)
-	{
-		ft_printf("Debug point: stack is NULL\n");
 		return (false);
-	}
 	temp = *stack;
 	prev_nbr = temp->nbr;
 	temp = temp->next;
@@ -32,30 +29,33 @@ bool	ft_is_stack_asc(t_stack **stack)
 		prev_nbr = temp->nbr;
 		temp = temp->next;
 	}
-	ft_printf("Debug point: the stack is ascending\n");
 	return (true);
 }
 
-bool	ft_is_stack_desc(t_stack **stack)
+static void ft_stack_delone(t_stack *stack)
 {
-	long	prev_nbr;
+	if (stack)
+	{
+		if (stack->next)
+		{
+			stack->next = NULL;
+		}		
+		free(stack);
+		stack = NULL;
+	}
+}
+
+void	ft_stack_free(t_stack **stack)
+{
 	t_stack	*temp;
 
-	if (!stack)
+	if (!stack || !*stack)
+		return ;
+	while (*stack)
 	{
-		ft_printf("Debug point: stack is NULL\n");
-		return (false);
+		temp = (*stack)->next;
+		ft_stack_delone(*stack);
+		*stack = temp;
 	}
-	temp = *stack;
-	prev_nbr = temp->nbr;
-	temp = temp->next;
-	while (temp)
-	{
-		if (prev_nbr < temp->nbr)
-			return (false);
-		prev_nbr = temp->nbr;
-		temp = temp->next;
-	}
-	ft_printf("Debug point: the stack is descending\n");
-	return (true);
+	*stack = NULL;
 }
