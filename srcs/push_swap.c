@@ -12,19 +12,6 @@
 
 #include "../include/push_swap.h"
 
-bool	ft_check_argv(int argc, char **argv)
-{
-	int	i;
-
-	i = 0;
-	while (++i < argc)
-	{
-		if (ft_is_str_num(argv[i]) == false || !argv[i])
-			return (false);
-	}
-	return (true);
-}
-
 bool	ft_range_bracket(t_stack **a, t_stack **b, t_data *data)
 {
 	if (ft_duplicate_check(*a) == false)

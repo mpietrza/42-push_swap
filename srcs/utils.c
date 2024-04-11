@@ -29,15 +29,30 @@ bool	ft_is_str_num(char *s)
 	return (false);
 }
 
+static long	ft_atoi_ps_core(char *s, t_data *data, int i, long nbr)
+{
+	while (s[i] >= '0' && s[i] <= '9')
+	{
+		nbr = nbr * 10 + s[i] - '0';
+		i++;
+		if ((nbr > ((long)INT_MAX + 1) && data->atoi_sign == -1)
+			|| (nbr > INT_MAX && data->atoi_sign == 1))
+		{
+			data->is_int = false;
+			return (-1);
+		}
+	}
+	return (nbr);
+}
+
 long	ft_atoi_ps(char *s, t_data *data)
 {
 	int		i;
-	int		sign;
 	long	nbr;
 
 	i = 0;
-	sign = 1;
 	nbr = 0;
+	data->atoi_sign = 1;
 	if (ft_is_str_num(s) == false)
 	{
 		data->atoi_error = true;
@@ -47,21 +62,13 @@ long	ft_atoi_ps(char *s, t_data *data)
 		|| s[i] == '\f' || s[i] == '\r' || s[i] == '+' || s[i] == '-')
 	{
 		if (s[i] == '-')
-			sign = -1;
+			data->atoi_sign = -1;
 		i++;
 	}
-	while (s[i] >= '0' && s[i] <= '9')
-	{
-		nbr = nbr * 10 + s[i] - '0';
-		i++;
-		if ((nbr > ((long)INT_MAX + 1) && sign == -1)
-			|| (nbr > INT_MAX && sign == 1))
-		{
-			data->is_int = false;
-			return (-1);
-		}
-	}
-	return (sign * nbr);
+	nbr = ft_atoi_ps_core(s, data, i, nbr);
+	if (nbr == -1)
+		return(-1);
+	return (data->atoi_sign * nbr);
 }
 
 int	ft_fake_argc(char *s)

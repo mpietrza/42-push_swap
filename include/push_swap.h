@@ -40,23 +40,76 @@ typedef struct	s_data
 	int		argc;
 	bool	is_argc_fake;
 	bool 	atoi_error;
+	int		atoi_sign;
 	bool	is_int;
 
 }				t_data;
 
-/* list of functions */
-long	ft_atoi_ps(char *s, t_data *data);
-bool	ft_check_argv(int argc, char **argv);
-bool	ft_cheapest_move(t_stack **source, t_stack **target);
-bool	ft_duplicate_check(t_stack *a);
-int		ft_fake_argc(char *s);
-char	**ft_fake_argv(char **argv);
+/*********** list of functions ************/
+
+/*actions_rr_rrr.c*/
+bool	ft_cheapest_move(t_stack **b, t_stack **a);
+void    ft_final_rotations(t_stack **a);
+
+/*data_parse_preparation.c*/
 void	ft_data_init(t_data *data, char **argv, int argc, bool is_argc_fake);
 bool	ft_data_parse(t_stack **a, t_data *data);
+bool	ft_duplicate_check(t_stack *a);
+bool	ft_check_argv(int argc, char **argv);
+
+/*exit_free.c*/
 void	ft_error_exit(const char *error_message);
+void	ft_free_and_exit(t_stack **a, t_stack **b, t_data *data,
+	const char *error_message);
 void	ft_exit_succesful(t_stack **a, t_stack **b, t_data *data);
-void	ft_find_cheapest(t_stack **source, t_stack **target);
-void	ft_free_and_exit(t_stack **a, t_stack **b, t_data *data, const char *error_message);
+
+/*find_cheapest.c*/
+bool	ft_find_cheapest(t_stack **b, t_stack **a);
+
+
+/*give_index.c*/
+
+/*give_push_price.c*/
+void	ft_give_push_price(t_stack **b, t_stack **a);
+
+/*oprs_push.c*/
+
+/*oprs_r_rotate.c*/
+
+/*oprs_rotate.c*/
+
+/*opr_swap.c*/
+
+/*!!!!!!push_swap.c!!!!!!*/
+
+/*range_3.c*/
+
+/*range_s.c*/
+
+/*stack_utils.c*/
+
+/*stack_utils2.c*/
+
+/*stack_utils3.c*/
+
+/*stack_utils4.c*/
+
+/*utils.c*/
+bool	ft_is_str_num(char *s);
+long	ft_atoi_ps(char *s, t_data *data);
+int		ft_fake_argc(char *s);
+char	**ft_fake_argv(char **argv);
+
+/*what_rotation.c*/
+void    ft_what_rotation(t_stack **a, t_stack **b,
+    bool uppr_med_a, bool uppr_med_b);
+
+
+
+
+
+
+
 int		ft_elem_max(t_stack **stack);
 int		ft_elem_min(t_stack **stack);
 int		ft_elem_max_lower_than_given(t_stack **stack, int given);
@@ -67,12 +120,12 @@ void	ft_give_target_index_asc(t_stack **a);
 //void	ft_give_push_index_a_to_b(t_stack **a, t_stack **b);
 void	ft_give_push_index_b_1_node_to_a(t_stack **b, t_stack **a);
 void	ft_give_push_index_b_to_a(t_stack **b, t_stack **a);
-void	ft_give_push_price(t_stack **b, t_stack **a);
-void    ft_final_rotations(t_stack **a);
+
+
 long		ft_find_nearest_higher(t_stack **stack, int nbr_to_push);
 bool	ft_is_stack_asc(t_stack **stack);
 bool	ft_is_stack_desc(t_stack **stack);
-bool	ft_is_str_num(char *s);
+
 void	ft_print_stack(t_stack **stack);
 bool	ft_push(t_stack **stack_1, t_stack **stack_2);
 bool	ft_rev_rotate(t_stack **stack);
@@ -92,8 +145,7 @@ void	ft_stack_free(t_stack **stack);
 t_stack *ft_stack_last(t_stack *stack);
 t_stack *ft_stack_new(char name, long nbr);
 long 	ft_stack_size(t_stack **stack);
-void	ft_what_rotation(t_stack **a, t_stack **b,
-		bool uppr_med_a, bool uppr_med_b);
+
 void    ft_what_rotation_1_stack(t_stack **stack, t_data *data);
 //sub_main - need to change name logic
 t_data	*sub_main1(int argc, char **argv);

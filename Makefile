@@ -35,11 +35,11 @@ W = "\033[37m"
 #SOURCES
 
 SRC			= actions_rr_rrr.c \
-			  data_init.c \
 			  data_parse_preparation.c \
 			  exit_free.c \
 			  find_cheapest.c \
 			  give_index.c \
+			  give_push_price.c\
 			  oprs_push.c \
 			  oprs_r_rotate.c \
 			  oprs_rotate.c \
@@ -51,7 +51,8 @@ SRC			= actions_rr_rrr.c \
 			  stack_utils2.c \
 			  stack_utils3.c \
 			  stack_utils4.c \
-			  utils.c
+			  utils.c \
+			  what_rotation.c
 			 
 SRCS		= $(addprefix $(DIR_SRCS), $(SRC))
 
