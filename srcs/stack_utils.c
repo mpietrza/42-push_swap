@@ -9,7 +9,11 @@ t_stack	*ft_stack_new(char name, long nbr)
 		return (NULL);
 	new->name = name;
 	new->nbr = nbr;
+	new->target_index = 0;
+	new->push_index = 0;
+	new->is_pushed_to_end_of_stack = false;
 	new->current_index = 0;
+	new->is_upper_median = false;
 	new->push_price = 0;
 	new->cheapest = false;
 	new->next = NULL;

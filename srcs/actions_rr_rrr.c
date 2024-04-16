@@ -31,16 +31,20 @@ static void	ft_stack_reset(t_stack **stack)
 static bool	ft_cheapest_move_core(t_stack **b, t_stack **a,
 	bool uppr_med_a, bool uppr_med_b)
 {
-	if ((*b)->push_index == ft_stack_size(a))
-	{
-		while ((*a)->target_index != 0)
+	t_stack	*temp_b;
+
+	temp_b = *b;
+	while (temp_b->cheapest != true)
+		temp_b = temp_b->next;
+	if (!temp_b)
+		return (false);
+	if (temp_b->push_index == ft_stack_size(a))
+	{	
+		while ((*a)->target_index != 0 || (*b)->cheapest == false)
 		{
-			if (uppr_med_a == true)
-				ft_rotate(a);
-			else if (uppr_med_a == false)
-				ft_rev_rotate(a);
-			else
-				return (false);
+			ft_what_rotation_end_of_stack_a(a, b, uppr_med_a, uppr_med_b);
+			ft_give_current_index(a);
+			ft_give_push_index_b_to_a(b, a);
 		}
 	}
 	else
@@ -48,10 +52,26 @@ static bool	ft_cheapest_move_core(t_stack **b, t_stack **a,
 		while ((*a)->cheapest == false || (*b)->cheapest == false)
 		{
 			ft_what_rotation(a, b, uppr_med_a, uppr_med_b);
+			ft_give_current_index(a);
 			ft_give_push_index_b_to_a(b, a);
 		}
 	}
 	return (true);
+}
+
+static bool	find_target_index_zero(t_stack **a)
+{
+	t_stack	*temp_a;
+
+	temp_a = *a;
+	while (temp_a->target_index != 0)
+		temp_a = temp_a->next;
+	if (!temp_a)
+		return (false);
+	if (temp_a->is_upper_median == true)
+		return (true);
+	else
+		return (false);
 }
 
 bool    ft_cheapest_move(t_stack **b, t_stack **a)
@@ -63,21 +83,45 @@ bool    ft_cheapest_move(t_stack **b, t_stack **a)
 	temp_b = *b;
 	uppr_med_a = false;
 	uppr_med_b = false;
+	/*ft_stack_print(a);
+	if (*b)
+		ft_stack_print(b);*/
 	while (temp_b->cheapest == false)
 		temp_b = temp_b->next;
 	if (temp_b == NULL)
 		return (false);
-	if ((temp_b->push_index / ft_stack_size(a)) * 100 < 50)
+	if (temp_b->is_pushed_to_end_of_stack == true)
+		uppr_med_a = find_target_index_zero(a);
+	else if ((temp_b->push_index / ft_stack_size(a)) * 100 < 50)
 		uppr_med_a = true;
 	else
 		uppr_med_a = false;
 	uppr_med_b = temp_b->is_upper_median;
+	//ft_give_target_index_asc(a);
+	//ft_printf("Debug_5a\n");
 	if (ft_cheapest_move_core(b, a, uppr_med_a, uppr_med_b) == false)
 		return (false);
+	//ft_printf("Debug_5b\n");
+	/*ft_stack_print(a);
+	if (*b)
+		ft_stack_print(b);*/
+	//ft_printf("Debug_5c\n");
 	ft_push(b, a);
-	ft_give_target_index_asc(a);
+	//ft_printf("Debug_5d\n");
 	ft_stack_reset(a);
-	ft_stack_reset(b);
+	//ft_printf("Debug_5e\n");
+	ft_give_target_index_asc(a);
+	//ft_printf("Debug_5f\n");
+	if (ft_is_stack_asc_rollover(a) == false)
+	{
+		//ft_stack_print(a);
+		//if (*b)
+		//	ft_stack_print(b);
+		//ft_printf("wrong move\n");
+		ft_swap(a);
+		//ft_stack_print(a);
+//		ft_error_exit("!!\n");
+	}
 	return (true);
 }
 

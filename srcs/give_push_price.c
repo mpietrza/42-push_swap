@@ -60,5 +60,6 @@ void	ft_give_push_price(t_stack **b, t_stack **a)
 	}
 	median_a = ft_stack_size(a) / 2;
 	ft_check_stack_median(a, median_a);
+	ft_check_stack_median(b, ft_stack_size(b) / 2);
 	ft_give_push_price_core(b, a, median_a);
 }

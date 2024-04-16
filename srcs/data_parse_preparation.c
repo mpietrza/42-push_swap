@@ -36,8 +36,6 @@ bool	ft_data_parse(t_stack **a, t_data *data)
 	while (j < data->argc)
 	{
 		num = ft_atoi_ps(data->argv[j], data);
-		if (data->atoi_error == true)
-			return (false);
 		ft_stack_add_bottom(a, ft_stack_new('a', num));
 		j++;
 	}

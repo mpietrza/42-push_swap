@@ -19,9 +19,9 @@ bool	ft_is_str_num(char *s)
 	i = 0;
 	if (s[0])
 	{
-		if (s[0] == '-' || ft_isdigit(s[0]))
+		if (s[0] == '-' || ft_isdigit(s[0]) == 1)
 			i++;
-		while (s[i] && ft_isdigit(s[i]))
+		while (s[i] && ft_isdigit(s[i]) == 1)
 			i++;
 		if (i == (int)ft_strlen(s))
 			return (true);
@@ -35,7 +35,7 @@ static long	ft_atoi_ps_core(char *s, t_data *data, int i, long nbr)
 	{
 		nbr = nbr * 10 + s[i] - '0';
 		i++;
-		if ((nbr > ((long)INT_MAX + 1) && data->atoi_sign == -1)
+		if ((nbr > 2147483648 && data->atoi_sign == -1)
 			|| (nbr > INT_MAX && data->atoi_sign == 1))
 		{
 			data->is_int = false;
@@ -53,11 +53,11 @@ long	ft_atoi_ps(char *s, t_data *data)
 	i = 0;
 	nbr = 0;
 	data->atoi_sign = 1;
-	if (ft_is_str_num(s) == false)
+	/*if (ft_is_str_num(s) == false)
 	{
 		data->atoi_error = true;
 		return (-1);
-	}
+	}*/
 	while (s[i] == ' ' || s[i] == '\t' || s[i] == '\n' || s[i] == '\v'
 		|| s[i] == '\f' || s[i] == '\r' || s[i] == '+' || s[i] == '-')
 	{

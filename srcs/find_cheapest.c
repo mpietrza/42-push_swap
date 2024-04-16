@@ -12,7 +12,7 @@
 
 #include "../include/push_swap.h"
 
-static bool ft_find_cheapest_node_b(t_stack **b, t_stack **cheapest_b)
+static void	ft_find_chpst_node_b_end_of_st(t_stack **b, t_stack **cheapest_b)
 {
 	t_stack	*temp_b;
 	int		prev_push_price;
@@ -36,6 +36,36 @@ static bool ft_find_cheapest_node_b(t_stack **b, t_stack **cheapest_b)
 		prev_cur_index = temp_b->current_index;
 		temp_b = temp_b->next;
 	}
+}
+
+static bool ft_find_cheapest_node_b(t_stack **b, t_stack **cheapest_b)
+{
+	t_stack	*temp_b;
+	int		prev_push_price;
+	int		prev_cur_index;
+
+	temp_b = *b;
+	prev_cur_index = INT_MAX;
+	prev_push_price = INT_MAX;
+
+	while (temp_b)
+	{
+		if ((temp_b->push_price < prev_push_price ||
+			(temp_b->push_price == prev_push_price
+			&& ((prev_cur_index > temp_b->current_index
+			&& temp_b->is_upper_median == true)
+			|| (prev_cur_index < temp_b->current_index
+			&& temp_b->is_upper_median == false))))
+			&& temp_b->is_pushed_to_end_of_stack == false)
+		{
+			prev_push_price = temp_b->push_price;
+			*cheapest_b = temp_b;
+		}
+		prev_cur_index = temp_b->current_index;
+		temp_b = temp_b->next;
+	}
+	if (*cheapest_b == NULL)
+		ft_find_chpst_node_b_end_of_st(b, cheapest_b);
 	if (*cheapest_b == NULL)
 		return (false);
 	(*cheapest_b)->cheapest = true;
@@ -53,10 +83,17 @@ static bool	ft_find_cheapest_nodes(t_stack **b, t_stack **a)
 		return (false);
 	while (temp_a->next && temp_a->current_index != cheapest_b->push_index)
 		temp_a = temp_a->next;
-	if (temp_a->next == NULL && ft_stack_size(b) != 1)
+	if (temp_a->next == NULL && ft_stack_size(b) != 1 &&
+		(cheapest_b->nbr > temp_a->nbr))
+	{
+	//	ft_printf("exception 1\n");
 		(*a)->cheapest = true;
+	}
 	else
+	{
+	//	ft_printf("regular\n");
 		temp_a->cheapest = true;
+	}
 	return (true);
 }
 

@@ -59,3 +59,23 @@ void	ft_stack_free(t_stack **stack)
 	}
 	*stack = NULL;
 }
+
+bool	ft_is_stack_asc_rollover(t_stack **stack)
+{
+	long	prev_nbr;
+	t_stack	*temp;
+
+	if (!stack)
+		return (false);
+	temp = *stack;
+	prev_nbr = temp->nbr;
+	temp = temp->next;
+	while (temp)
+	{
+		if ((prev_nbr > temp->nbr) && temp->target_index != 0)
+			return (false);
+		prev_nbr = temp->nbr;
+		temp = temp->next;
+	}
+	return (true);
+}

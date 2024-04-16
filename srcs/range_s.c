@@ -45,15 +45,28 @@ void	ft_range_5(t_stack **a, t_stack **b)
 	while (ft_stack_size(a) > 3)
 		ft_push(a, b);
 	ft_range_3(a);
+	/*ft_stack_print(a);
+	if (*b)
+		ft_stack_print(b);*/
 	while (*b)
 	{
 		ft_give_current_index(a);
+		//ft_printf("Debug_1\n");
 		ft_give_current_index(b);
+		//ft_printf("Debug_2\n");
 		ft_give_target_index_asc(a);
+		//ft_printf("Debug_3\n");
 		ft_give_push_index_b_to_a(b, a);
+		//ft_printf("Debug_4\n");
 		ft_find_cheapest(b, a);
+		//ft_printf("Debug_5\n");
 		ft_cheapest_move(b, a);
+		//ft_printf("Debug_6\n");
 		ft_give_target_index_asc(a);
+		//ft_printf("Debug_7\n");
 	}
 	ft_final_rotations(a);
+	/*ft_stack_print(a);
+	if (*b)
+		ft_stack_print(b);*/
 }

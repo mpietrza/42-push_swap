@@ -83,7 +83,7 @@ long	ft_stack_size(t_stack **stack)
 	return (size);
 }
 
-/*void	ft_stack_print(t_stack **stack)
+void	ft_stack_print(t_stack **stack)
 {
 	t_stack	*temp;
 
@@ -93,9 +93,10 @@ long	ft_stack_size(t_stack **stack)
 	ft_printf("\nSTACK %c:\n", (*stack)->name);
 	while (temp)
 	{
-		ft_printf("name = %c, nbr = %d, target_index = %d, push_index = %d, current_index = %d, is_upper_median = %d, push_price = %d, cheapest = %d\n",
-			temp->name, (int)temp->nbr, (int)temp->target_index, (int)temp->push_index, (int)temp->current_index, (int)temp->is_upper_median, (int)temp->push_price, (int)temp->cheapest);
+		ft_printf("name = %c, nbr = %d, target_index = %d, push_index = %d, current_index = %d, is_upper_median = %d, push_price = %d, cheapest = %d, is_end_stack = %d\n",
+			temp->name, (int)temp->nbr, (int)temp->target_index, (int)temp->push_index, (int)temp->current_index,
+			(int)temp->is_upper_median, (int)temp->push_price, (int)temp->cheapest, (int)temp->is_pushed_to_end_of_stack);
 		temp = temp->next;
 	}
 	ft_printf("------------------------------------------------------------------------------------------------------------\n\n");
-}*/
+}

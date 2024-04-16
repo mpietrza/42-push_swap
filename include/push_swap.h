@@ -26,6 +26,7 @@ typedef struct		s_stack
 	long			nbr;
 	long			target_index;
 	long			push_index;
+	bool			is_pushed_to_end_of_stack;
 	long			current_index;
 	bool			is_upper_median;
 	long			push_price;
@@ -111,11 +112,12 @@ long	ft_elem_min(t_stack **stack);
 long	ft_elem_min_higher_than_given(t_stack **stack, int given);
 long	ft_elem_max(t_stack **stack);
 long 	ft_stack_size(t_stack **stack);
-//void	ft_stack_print(t_stack **stack);
+void	ft_stack_print(t_stack **stack);
 
 /*stack_utils3.c*/
 bool	ft_is_stack_asc(t_stack **stack);
 void	ft_stack_free(t_stack **stack);
+bool	ft_is_stack_asc_rollover(t_stack **stack);
 
 /*utils.c*/
 bool	ft_is_str_num(char *s);
@@ -125,6 +127,8 @@ char	**ft_fake_argv(char **argv);
 
 /*what_rotation.c*/
 void    ft_what_rotation(t_stack **a, t_stack **b,
+    	bool uppr_med_a, bool uppr_med_b);
+void    ft_what_rotation_end_of_stack_a(t_stack **a, t_stack **b,
     	bool uppr_med_a, bool uppr_med_b);
 		
 #endif
