@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 18:46:46 by mpietrza          #+#    #+#             */
-/*   Updated: 2024/02/20 18:48:22 by mpietrza         ###   ########.fr       */
+/*   Updated: 2024/04/29 17:04:03 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	ft_stack_reset(t_stack **stack)
 {
 	t_stack	*temp;
-	
+
 	temp = *stack;
 	while (temp)
 	{
@@ -39,7 +39,7 @@ static bool	ft_cheapest_move_core(t_stack **b, t_stack **a,
 	if (!temp_b)
 		return (false);
 	if (temp_b->push_index == ft_stack_size(a))
-	{	
+	{
 		while ((*a)->target_index != 0 || (*b)->cheapest == false)
 		{
 			ft_what_rotation_end_of_stack_a(a, b, uppr_med_a, uppr_med_b);
@@ -74,18 +74,15 @@ static bool	find_target_index_zero(t_stack **a)
 		return (false);
 }
 
-bool    ft_cheapest_move(t_stack **b, t_stack **a)
+bool	ft_cheapest_move(t_stack **b, t_stack **a)
 {
-	t_stack *temp_b;
+	t_stack	*temp_b;
 	bool	uppr_med_a;
 	bool	uppr_med_b;
 
 	temp_b = *b;
 	uppr_med_a = false;
 	uppr_med_b = false;
-	/*ft_stack_print(a);
-	if (*b)
-		ft_stack_print(b);*/
 	while (temp_b->cheapest == false)
 		temp_b = temp_b->next;
 	if (temp_b == NULL)
@@ -97,31 +94,13 @@ bool    ft_cheapest_move(t_stack **b, t_stack **a)
 	else
 		uppr_med_a = false;
 	uppr_med_b = temp_b->is_upper_median;
-	//ft_give_target_index_asc(a);
-	//ft_printf("Debug_5a\n");
 	if (ft_cheapest_move_core(b, a, uppr_med_a, uppr_med_b) == false)
 		return (false);
-	//ft_printf("Debug_5b\n");
-	/*ft_stack_print(a);
-	if (*b)
-		ft_stack_print(b);*/
-	//ft_printf("Debug_5c\n");
 	ft_push(b, a);
-	//ft_printf("Debug_5d\n");
 	ft_stack_reset(a);
-	//ft_printf("Debug_5e\n");
 	ft_give_target_index_asc(a);
-	//ft_printf("Debug_5f\n");
 	if (ft_is_stack_asc_rollover(a) == false)
-	{
-		//ft_stack_print(a);
-		//if (*b)
-		//	ft_stack_print(b);
-		//ft_printf("wrong move\n");
 		ft_swap(a);
-		//ft_stack_print(a);
-//		ft_error_exit("!!\n");
-	}
 	return (true);
 }
 
