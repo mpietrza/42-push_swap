@@ -90,7 +90,6 @@ bool	ft_cheapest_move(t_stack **b, t_stack **a)
 	if (temp_b == NULL)
 		return (false);
 	if (temp_b->is_pushed_to_end_of_stack == true)
-
 		uppr_med_a = find_target_index_zero(a);
 	else if (temp_b->push_index < ft_stack_size(a) / 2)
 		uppr_med_a = true;
