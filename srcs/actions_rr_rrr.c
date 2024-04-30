@@ -63,12 +63,14 @@ static bool	find_target_index_zero(t_stack **a)
 {
 	t_stack	*temp_a;
 
+	ft_give_current_index(a);
+	ft_give_target_index_asc(a);
 	temp_a = *a;
 	while (temp_a->target_index != 0)
 		temp_a = temp_a->next;
 	if (!temp_a)
 		return (false);
-	if (temp_a->is_upper_median == true)
+	if (temp_a->current_index < ft_stack_size(a) / 2)
 		return (true);
 	else
 		return (false);
@@ -88,8 +90,9 @@ bool	ft_cheapest_move(t_stack **b, t_stack **a)
 	if (temp_b == NULL)
 		return (false);
 	if (temp_b->is_pushed_to_end_of_stack == true)
+
 		uppr_med_a = find_target_index_zero(a);
-	else if ((temp_b->push_index / ft_stack_size(a)) * 100 < 50)
+	else if (temp_b->push_index < ft_stack_size(a) / 2)
 		uppr_med_a = true;
 	else
 		uppr_med_a = false;
@@ -106,14 +109,14 @@ bool	ft_cheapest_move(t_stack **b, t_stack **a)
 
 void	ft_final_rotations(t_stack **a)
 {
-	if ((*a)->target_index <= ft_stack_size(a) / 2)
+	if ((*a)->target_index > ft_stack_size(a) / 2)
 	{
 		while ((*a)->target_index != 0)
-			ft_rev_rotate(a);
+			ft_rotate(a);
 	}
 	else
 	{
 		while ((*a)->target_index != 0)
-			ft_rotate(a);
+			ft_rev_rotate(a);
 	}
 }
