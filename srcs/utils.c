@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 13:52:47 by mpietrza          #+#    #+#             */
-/*   Updated: 2024/02/09 17:39:39 by mpietrza         ###   ########.fr       */
+/*   Updated: 2024/04/30 18:05:58 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,6 @@ long	ft_atoi_ps(char *s, t_data *data)
 	i = 0;
 	nbr = 0;
 	data->atoi_sign = 1;
-	/*if (ft_is_str_num(s) == false)
-	{
-		data->atoi_error = true;
-		return (-1);
-	}*/
 	while (s[i] == ' ' || s[i] == '\t' || s[i] == '\n' || s[i] == '\v'
 		|| s[i] == '\f' || s[i] == '\r' || s[i] == '+' || s[i] == '-')
 	{
@@ -67,7 +62,7 @@ long	ft_atoi_ps(char *s, t_data *data)
 	}
 	nbr = ft_atoi_ps_core(s, data, i, nbr);
 	if (nbr == -1)
-		return(-1);
+		return (-1);
 	return (data->atoi_sign * nbr);
 }
 
@@ -101,10 +96,13 @@ int	ft_fake_argc(char *s)
 
 char	**ft_fake_argv(char **argv)
 {
-	char	*s = NULL;
-	char	*temp = NULL;
-	char	**fake_argv = NULL;
+	char	*s;
+	char	*temp;
+	char	**fake_argv;
 
+	s = NULL;
+	temp = NULL;
+	fake_argv = NULL;
 	temp = ft_strjoin(argv[0], " ");
 	s = ft_strjoin(temp, argv[1]);
 	free(temp);

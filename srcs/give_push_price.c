@@ -1,5 +1,14 @@
-//missing header//
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   give_push_price.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mpietrza <mpietrza@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/30 17:50:52 by mpietrza          #+#    #+#             */
+/*   Updated: 2024/04/30 17:54:56 by mpietrza         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
@@ -7,7 +16,7 @@ static void	ft_check_stack_median(t_stack **stack, long median)
 {
 	t_stack	*temp;
 	long	i;
-	
+
 	temp = *stack;
 	i = 0;
 	while (temp)
@@ -28,19 +37,19 @@ static void	ft_give_push_price_core(t_stack **b, t_stack **a, long median_a)
 	temp_b = *b;
 	while (temp_b)
 	{
-		if (temp_b->push_index <= median_a && temp_b->is_upper_median == true)
+		if (temp_b->push_index <= median_a && temp_b->is_upper_median == 1)
 			temp_b->push_price = temp_b->push_index + temp_b->current_index;
-		else if (temp_b->push_index > median_a && temp_b->is_upper_median == false)
+		else if (temp_b->push_index > median_a && temp_b->is_upper_median == 0)
 		{
 			temp_b->push_price = ft_stack_size(a) - temp_b->push_index
 				+ ft_stack_size(b) - temp_b->current_index;
 		}
-		else if (temp_b->push_index > median_a && temp_b->is_upper_median == true)
+		else if (temp_b->push_index > median_a && temp_b->is_upper_median == 1)
 		{
 			temp_b->push_price = ft_stack_size(a) - temp_b->push_index
 				+ temp_b->current_index;
 		}
-		else if (temp_b->push_index <= median_a && temp_b->is_upper_median == false)
+		else if (temp_b->push_index <= median_a && temp_b->is_upper_median == 0)
 		{
 			temp_b->push_price = temp_b->push_index
 				+ ft_stack_size(b) - temp_b->current_index;

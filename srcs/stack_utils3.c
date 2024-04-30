@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 14:51:19 by mpietrza          #+#    #+#             */
-/*   Updated: 2024/02/06 17:08:08 by mpietrza         ###   ########.fr       */
+/*   Updated: 2024/04/30 18:02:46 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,14 @@ bool	ft_is_stack_asc(t_stack **stack)
 	return (true);
 }
 
-static void ft_stack_delone(t_stack *stack)
+static void	ft_stack_delone(t_stack *stack)
 {
 	if (stack)
 	{
 		if (stack->next)
 		{
 			stack->next = NULL;
-		}		
+		}
 		free(stack);
 		stack = NULL;
 	}

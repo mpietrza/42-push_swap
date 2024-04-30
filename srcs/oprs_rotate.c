@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 16:56:04 by mpietrza          #+#    #+#             */
-/*   Updated: 2024/02/06 15:59:46 by mpietrza         ###   ########.fr       */
+/*   Updated: 2024/04/30 17:58:14 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ static bool	ft_rotate_core(t_stack **stack)
 	return (true);
 }
 
-
 bool	ft_rotate(t_stack **stack)
 {
 	if (ft_rotate_core(stack) == false)
@@ -44,4 +43,3 @@ bool	ft_rr(t_stack **a, t_stack **b)
 		write(1, "rr\n", 3);
 	return (true);
 }
-

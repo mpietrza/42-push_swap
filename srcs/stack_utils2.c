@@ -6,12 +6,12 @@
 /*   By: mpietrza <mpietrza@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 14:25:47 by mpietrza          #+#    #+#             */
-/*   Updated: 2024/02/06 17:06:29 by mpietrza         ###   ########.fr       */
+/*   Updated: 2024/04/30 18:02:02 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
- 
+
 long	ft_elem_min(t_stack **stack)
 {
 	t_stack	*temp;
@@ -69,8 +69,9 @@ long	ft_elem_max(t_stack **stack)
 long	ft_stack_size(t_stack **stack)
 {
 	long	size;
-	t_stack	*temp = NULL;
+	t_stack	*temp;
 
+	temp = NULL;
 	if (!*stack)
 		return (0);
 	size = 1;
@@ -81,22 +82,4 @@ long	ft_stack_size(t_stack **stack)
 		size++;
 	}
 	return (size);
-}
-
-void	ft_stack_print(t_stack **stack)
-{
-	t_stack	*temp;
-
-	if (!*stack)
-		return ;
-	temp = *stack;
-	ft_printf("\nSTACK %c:\n", (*stack)->name);
-	while (temp)
-	{
-		ft_printf("name = %c, nbr = %d, target_index = %d, push_index = %d, current_index = %d, is_upper_median = %d, push_price = %d, cheapest = %d, is_end_stack = %d\n",
-			temp->name, (int)temp->nbr, (int)temp->target_index, (int)temp->push_index, (int)temp->current_index,
-			(int)temp->is_upper_median, (int)temp->push_price, (int)temp->cheapest, (int)temp->is_pushed_to_end_of_stack);
-		temp = temp->next;
-	}
-	ft_printf("------------------------------------------------------------------------------------------------------------\n\n");
 }

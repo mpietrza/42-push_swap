@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 16:58:57 by mpietrza          #+#    #+#             */
-/*   Updated: 2024/02/16 16:59:24 by mpietrza         ###   ########.fr       */
+/*   Updated: 2024/04/30 17:35:10 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 void	ft_give_target_index_asc(t_stack **a)
 {
-	t_stack *temp_a;
-	int	nbr;
-	int	i;
+	t_stack	*temp_a;
+	int		nbr;
+	int		i;
+
 	temp_a = *a;
 	nbr = ft_elem_min(a);
 	i = 0;
@@ -31,36 +32,32 @@ void	ft_give_target_index_asc(t_stack **a)
 			temp_a = *a;
 		}
 		else
-			break;
+			break ;
 	}
 }
 
-void	ft_give_push_index_b_1_node_to_a(t_stack **b, t_stack **a)
+static void	ft_give_cur_and_push_ind_b_to_a_core(t_stack **a,
+	t_stack *temp_b, int best_match)
 {
 	t_stack	*temp_a;
-	long	best_match;
 
-	best_match = INT_MAX;
 	temp_a = *a;
 	while (temp_a)
 	{
-		if (temp_a->nbr > (*b)->nbr && temp_a->nbr < best_match)
+		if (temp_a->nbr == best_match)
 		{
-			best_match = temp_a->nbr;
-			(*b)->push_index = temp_a->current_index;
-        }
+			temp_b->push_index = temp_a->current_index;
+			break ;
+		}
 		temp_a = temp_a->next;
 	}
-	if (best_match == INT_MAX)
-		(*b)->target_index = 0;
 }
 
 void	ft_give_push_index_b_to_a(t_stack **b, t_stack **a)
 {
-	t_stack	*temp_a;
 	t_stack	*temp_b;
 	int		best_match;
-	
+
 	temp_b = *b;
 	while (temp_b)
 	{
@@ -73,16 +70,7 @@ void	ft_give_push_index_b_to_a(t_stack **b, t_stack **a)
 		else
 		{
 			temp_b->is_pushed_to_end_of_stack = false;
-			temp_a = *a;
-			while (temp_a)
-			{
-				if (temp_a->nbr == best_match)
-				{
-					temp_b->push_index = temp_a->current_index;
-					break;
-				}
-				temp_a = temp_a->next;
-			}
+			ft_give_cur_and_push_ind_b_to_a_core(a, temp_b, best_match);
 		}
 		temp_b = temp_b->next;
 	}
@@ -91,7 +79,7 @@ void	ft_give_push_index_b_to_a(t_stack **b, t_stack **a)
 long	ft_give_current_index(t_stack **stack)
 {
 	t_stack	*temp;
-	int	i;
+	int		i;
 
 	if (!*stack)
 		return (-1);
@@ -104,4 +92,11 @@ long	ft_give_current_index(t_stack **stack)
 		i++;
 	}
 	return (i);
+}
+
+void	ft_give_cur_and_push_ind_b_to_a(t_stack **b, t_stack **a)
+{
+	ft_give_current_index(a);
+	ft_give_current_index(b);
+	ft_give_push_index_b_to_a(b, a);
 }

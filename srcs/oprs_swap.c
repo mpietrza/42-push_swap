@@ -6,13 +6,13 @@
 /*   By: mpietrza <mpietrza@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:35:26 by mpietrza          #+#    #+#             */
-/*   Updated: 2024/02/02 14:28:52 by mpietrza         ###   ########.fr       */
+/*   Updated: 2024/04/30 17:58:59 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-static bool ft_swap_core(t_stack **stack)
+static bool	ft_swap_core(t_stack **stack)
 {
 	t_stack	*tmp;
 
@@ -35,7 +35,7 @@ bool	ft_swap(t_stack **stack)
 }
 
 bool	ft_ss(t_stack **a, t_stack **b)
-{	
+{
 	if (ft_swap_core(a) == false || ft_swap_core(b) == false)
 		return (false);
 	if (*a && *b)

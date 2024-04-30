@@ -67,9 +67,9 @@ bool	ft_find_cheapest(t_stack **b, t_stack **a);
 
 /*give_index.c*/
 void	ft_give_target_index_asc(t_stack **a);
-void	ft_give_push_index_b_1_node_to_a(t_stack **b, t_stack **a);
 void	ft_give_push_index_b_to_a(t_stack **b, t_stack **a);
 long	ft_give_current_index(t_stack **stack);
+void	ft_give_cur_and_push_ind_b_to_a(t_stack **b, t_stack **a);
 
 /*give_push_price.c*/
 void	ft_give_push_price(t_stack **b, t_stack **a);
@@ -92,14 +92,14 @@ bool	ft_ss(t_stack **a, t_stack **b);
 /*!!!!!!push_swap.c!!!!!!*/
 bool	ft_range_bracket(t_stack **a, t_stack **b, t_data *data);
 void	string_to_args(t_data *data, int argc, char **argv);
+t_data	*data_calloc(int argc, char **argv);
 
 /*range_3.c*/
 void	ft_range_2(t_stack **a);
 void	ft_range_3(t_stack **a);
 
 /*range_s.c*/
-void	ft_range_4(t_stack **a, t_stack **b);
-void	ft_range_5(t_stack **a, t_stack **b);
+void	ft_range_s(t_stack **a, t_stack **b);
 
 /*stack_utils.c*/
 
