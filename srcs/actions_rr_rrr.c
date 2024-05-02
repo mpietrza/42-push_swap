@@ -28,18 +28,16 @@ static void	ft_stack_reset(t_stack **stack)
 	ft_give_current_index(stack);
 }
 
-static bool	find_target_index_zero(t_stack **a)
+static int	is_target_index_zero_up_med_a(t_stack **a)
 {
 	t_stack	*temp_a;
 
 	ft_give_current_index(a);
 	ft_give_target_index_asc(a);
 	temp_a = *a;
-	while (temp_a->target_index != 0)
+	while (temp_a && temp_a->target_index != 0)
 		temp_a = temp_a->next;
-	if (!temp_a)
-		return (false);
-	if (temp_a->current_index < ft_stack_size(a) / 2)
+	if (temp_a && temp_a->current_index < ft_stack_size(a) / 2)
 		return (true);
 	else
 		return (false);
@@ -55,7 +53,7 @@ static bool	ft_cheapest_move_core(t_stack **b, t_stack **a,
 		temp_b = temp_b->next;
 	if (!temp_b)
 		return (false);
-	if (temp_b->push_index == ft_stack_size(a))
+	if (temp_b->is_pushed_to_end_of_stack == true)
 	{
 		while ((*a)->target_index != 0 || (*b)->cheapest == false)
 		{
@@ -88,7 +86,7 @@ bool	ft_cheapest_move(t_stack **b, t_stack **a)
 	if (temp_b == NULL)
 		return (false);
 	if (temp_b->is_pushed_to_end_of_stack == true)
-		uppr_med_a = find_target_index_zero(a);
+		uppr_med_a = is_target_index_zero_up_med_a(a);
 	else if (temp_b->push_index < ft_stack_size(a) / 2)
 		uppr_med_a = true;
 	else

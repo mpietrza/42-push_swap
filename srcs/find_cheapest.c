@@ -6,35 +6,31 @@
 /*   By: mpietrza <mpietrza@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 17:59:39 by mpietrza          #+#    #+#             */
-/*   Updated: 2024/04/30 18:26:43 by mpietrza         ###   ########.fr       */
+/*   Updated: 2024/05/02 17:20:47 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-static bool	ft_find_chpst_node_b_end_of_st(t_stack **b, t_stack **cheapest_b)
+static t_stack	*ft_find_chpst_node_b_end_of_st(t_stack **b)
 {
 	t_stack	*temp_b;
+	t_stack	*cheapest_b;
 	int		prev_push_price;
 
 	temp_b = *b;
+	cheapest_b = NULL;
 	prev_push_price = INT_MAX;
 	while (temp_b)
 	{
 		if (temp_b->push_price < prev_push_price)
 		{
 			prev_push_price = temp_b->push_price;
-			*cheapest_b = temp_b;
+			cheapest_b = temp_b;
 		}
 		temp_b = temp_b->next;
 	}
-	if (*cheapest_b == NULL)
-		return (false);
-	return (true);
-	//need to simplify it
-	//if (temp_b->next == NULL && ft_stack_size(b) != 1
-    //&& (cheapest_b->nbr > temp_b->nbr))
-    //(*b)->cheapest = true;  ????
+	return (cheapest_b);
 }
 
 static void	ft_find_cheapest_node_b_core(t_stack **b, t_stack **cheapest_b)
@@ -66,12 +62,9 @@ static void	ft_find_cheapest_node_b_core(t_stack **b, t_stack **cheapest_b)
 
 static bool	ft_find_cheapest_node_b(t_stack **b, t_stack **cheapest_b)
 {
-	ft_find_cheapest_node_b_core(b, cheapest_b);
-	if (*cheapest_b == NULL)
-	{
-		if (ft_find_chpst_node_b_end_of_st(b, cheapest_b) == false)
-			return (false);
-	}
+	*cheapest_b = ft_find_chpst_node_b_end_of_st(b);
+	if (!*cheapest_b)
+		ft_find_cheapest_node_b_core(b, cheapest_b);
 	(*cheapest_b)->cheapest = true;
 	return (true);
 }

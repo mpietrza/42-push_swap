@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 14:51:19 by mpietrza          #+#    #+#             */
-/*   Updated: 2024/04/30 18:02:46 by mpietrza         ###   ########.fr       */
+/*   Updated: 2024/05/02 17:21:12 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,18 @@ bool	ft_is_stack_asc_rollover(t_stack **stack)
 		temp = temp->next;
 	}
 	return (true);
+}
+
+bool	if_is_end_of_stack_false_exist(t_stack **stack)
+{
+	t_stack	*temp;
+
+	temp = *stack;
+	while (temp)
+	{
+		if (temp->is_pushed_to_end_of_stack == false)
+			return (true);
+		temp = temp->next;
+	}
+	return (false);
 }

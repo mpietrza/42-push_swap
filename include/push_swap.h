@@ -118,6 +118,7 @@ void	ft_stack_print(t_stack **stack);
 bool	ft_is_stack_asc(t_stack **stack);
 void	ft_stack_free(t_stack **stack);
 bool	ft_is_stack_asc_rollover(t_stack **stack);
+bool	if_is_end_of_stack_false_exist(t_stack **stack);
 
 /*utils.c*/
 bool	ft_is_str_num(char *s);
