@@ -65,7 +65,9 @@ all:	$(DIR_OBJS) $(NAME)
 
 $(DIR_OBJS)%.o : $(DIR_SRCS)%.c
 	@echo $(B)Compiling [$<]... $(DEF_COLOR)
-	$(CC) $(CFLAGS) -MMD -MP -c -o $@ $<
+	@printf $(Y) 
+	$(CC) $(CFLAGS) -MMD -MP -c -o $@ $< 
+	@echo $(DEF_COLOR)
 
 utils:
 	@echo $(B)
@@ -73,10 +75,10 @@ utils:
 	@echo $(DEF_COLOR)
 
 $(DIR_OBJS):
-	@echo $(Y)Creating directory: $(DIR_OBJS)
-	@echo Generating obj...
+	@echo $(B)Creating directory: $(DIR_OBJS)
+	@printf $(Y)
 	mkdir -p $(DIR_OBJS)
-	@echo Objs generated succesfully! $(DEF_COLOR)
+	@echo Directory 'objs' generated succesfully! $(DEF_COLOR)
 
 $(NAME): $(OBJS) Makefile
 	$(MAKE) utils
@@ -85,9 +87,10 @@ $(NAME): $(OBJS) Makefile
 
 clean:
 	@echo $(GRAY)
-	make -C $(DIR_LIBFT) clean 
+	make -C $(DIR_LIBFT) clean
+	@echo $(GRAY)
 	$(RM) -rf $(OBJS) $(DEPS) $(DIR_OBJS)
-	@echo $(G)Push_swap object files erased succesfully! $(DEF_COLOR)
+	@echo $(G)Push_swap object files erased successfully! $(DEF_COLOR)
 
 fclean: clean
 	@echo $(GRAY)
@@ -96,7 +99,7 @@ fclean: clean
 	@echo $(G)Push_swap executable files erased succesfully! $(DEF_COLOR)
 	
 re:		fclean all
-	@echo $(G)Erased and recompiled every file of push_swap successfully!	$(DEF_COLOR)
+	@echo $(G)Erased and recompiled every file of push_swap successfully! $(DEF_COLOR)
 
 debug:
 	@echo "Source files: $(SRCS)"

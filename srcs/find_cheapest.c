@@ -60,24 +60,42 @@ static void	ft_find_cheapest_node_b_core(t_stack **b, t_stack **cheapest_b)
 	}
 }
 
-static bool	ft_find_cheapest_node_b(t_stack **b, t_stack **cheapest_b)
+static void	ft_find_cheapest_node_b(t_stack **b, t_stack **cheapest_b)
 {
 	*cheapest_b = ft_find_chpst_node_b_end_of_st(b);
 	if (!*cheapest_b)
 		ft_find_cheapest_node_b_core(b, cheapest_b);
 	(*cheapest_b)->cheapest = true;
-	return (true);
 }
 
-static bool	ft_find_cheapest_nodes(t_stack **b, t_stack **a)
+static void	ft_lower_price_for_rr_or_rrr(t_stack **b, t_stack **a)
+{
+	t_stack	*temp_b;
+
+	temp_b = *b;
+	while (temp_b)
+	{
+		if ((temp_b->is_upper_median == true
+			&& temp_b->push_index < ft_stack_size(a) / 2)
+			|| (temp_b->is_upper_median == false
+				&& temp_b->push_index >= ft_stack_size(a) / 2))
+			temp_b->push_price = temp_b->push_price * 3 / 4;
+		temp_b = temp_b->next;
+	}
+}
+
+bool	ft_find_cheapest(t_stack **b, t_stack **a)
 {
 	t_stack	*temp_a;
 	t_stack	*cheapest_b;
-
+	
 	temp_a = *a;
 	cheapest_b = NULL;
-	if (ft_find_cheapest_node_b(b, &cheapest_b) == false)
+	if (!*b || !b || !*a || !a)
 		return (false);
+	ft_give_push_price(b, a);
+	ft_lower_price_for_rr_or_rrr(b, a);
+	ft_find_cheapest_node_b(b, &cheapest_b);
 	while (temp_a->next && temp_a->current_index != cheapest_b->push_index)
 		temp_a = temp_a->next;
 	if (temp_a->next == NULL && ft_stack_size(b) != 1
@@ -85,15 +103,5 @@ static bool	ft_find_cheapest_nodes(t_stack **b, t_stack **a)
 		(*a)->cheapest = true;
 	else
 		temp_a->cheapest = true;
-	return (true);
-}
-
-bool	ft_find_cheapest(t_stack **b, t_stack **a)
-{
-	if (!*b || !b || !*a || !a)
-		return (false);
-	ft_give_push_price(b, a);
-	if (ft_find_cheapest_nodes(b, a) == false)
-		return (false);
 	return (true);
 }

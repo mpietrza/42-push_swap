@@ -1,8 +1,31 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: mpietrza <mpietrza@student.42barcel>       +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/05/03 17:24:21 by mpietrza          #+#    #+#              #
+#    Updated: 2024/05/03 17:24:25 by mpietrza         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = libft.a
 
-CC  = gcc
+CC  = cc
 
 CFLAGS = -Wall -Wextra -Werror
+
+#COLORS
+DEF_COLOR = "\033[39m"
+GRAY = "\033[30m"
+R = "\033[31m"
+G = "\033[32m"
+Y = "\033[33m"
+B = "\033[34m"
+M = "\033[35m"
+C = "\033[36m"
+W = "\033[37m"
 
 SRC = ft_atoi.c \
 	ft_bzero.c \
@@ -68,22 +91,29 @@ all: $(NAME)
 $(NAME): $(OBJ) libft.h Makefile 
 	ar rc $(NAME) $(OBJ)
 	ranlib $(NAME)
+	@echo $(G)Libft compiled successfully! $(DEF_COLOR)
 
 bonus: $(OBJ_BONUS) libft.h Makefile
 	ar rc $(NAME) $(OBJ_BONUS)
 	ranlib $(NAME)
 
 %.o: %.c
-	@echo "\033[0;33mGenerating obj..."
+	@echo $(B)Compiling [$<]... $(DEF_COLOR)	
+	@printf $(Y) 
 	$(CC) -c $(CFLAGS) $^
-	@echo "\033[0m"
+	@echo $(DEF_COLOR)
 
 clean:
+	@echo $(GRAY)
 	rm -f $(OBJ) #$(OBJ_BONUS)
+	@echo $(G)Libft object files erased successfully! $(DEF_COLOR)
 
 fclean: clean
+	@echo $(GRAY)
 	rm -f $(NAME)
+	@echo $(G)Libft executable files erased successfully! $(DEF_COLOR)
 
 re: fclean all
+	@echo $(G)Erased and recompiled every file of libft successfully! $(DEF_COLOR)
 
 .PHONY: all clean fclean re bonus
