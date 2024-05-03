@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSHSWAP_H
-# define PUSHSWAP_H
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -20,7 +20,7 @@
 # include "../libft/libft.h"
 
 /*struct - stack*/
-typedef struct		s_stack
+typedef struct s_stack
 {
 	char			name;
 	long			nbr;
@@ -35,12 +35,12 @@ typedef struct		s_stack
 }					t_stack;
 
 /*struct - for data transfer thoughout the program*/
-typedef struct	s_data
+typedef struct s_data
 {
 	char		**argv;
 	int			argc;
 	bool		is_argc_fake;
-	bool 		atoi_error;
+	bool		atoi_error;
 	int			atoi_sign;
 	bool		is_int;
 }				t_data;
@@ -48,7 +48,7 @@ typedef struct	s_data
 /***************************** list of functions ******************************/
 /*actions_rr_rrr.c*/
 bool	ft_cheapest_move(t_stack **b, t_stack **a);
-void    ft_final_rotations(t_stack **a);
+void	ft_final_rotations(t_stack **a);
 
 /*data_parse_preparation.c*/
 void	ft_data_init(t_data *data, char **argv, int argc, bool is_argc_fake);
@@ -59,7 +59,7 @@ bool	ft_check_argv(int argc, char **argv);
 /*exit_free.c*/
 void	ft_error_exit(const char *error_message);
 void	ft_free_and_exit(t_stack **a, t_stack **b, t_data *data,
-	const char *error_message);
+			const char *error_message);
 void	ft_exit_succesful(t_stack **a, t_stack **b, t_data *data);
 
 /*find_cheapest.c*/
@@ -103,15 +103,15 @@ void	ft_range_s(t_stack **a, t_stack **b);
 
 /*stack_utils.c*/
 
-t_stack *ft_stack_new(char name, long nbr);
-t_stack *ft_stack_last(t_stack *stack);
+t_stack	*ft_stack_new(char name, long nbr);
+t_stack	*ft_stack_last(t_stack *stack);
 void	ft_stack_add_bottom(t_stack **stack, t_stack *new);
 
 /*stack_utils2.c*/
 long	ft_elem_min(t_stack **stack);
 long	ft_elem_min_higher_than_given(t_stack **stack, int given);
 long	ft_elem_max(t_stack **stack);
-long 	ft_stack_size(t_stack **stack);
+long	ft_stack_size(t_stack **stack);
 void	ft_stack_print(t_stack **stack);
 
 /*stack_utils3.c*/
@@ -127,9 +127,8 @@ int		ft_fake_argc(char *s);
 char	**ft_fake_argv(char **argv);
 
 /*what_rotation.c*/
-void    ft_what_rotation(t_stack **a, t_stack **b,
-    	bool uppr_med_a, bool uppr_med_b);
-void    ft_what_rotation_end_of_stack_a(t_stack **a, t_stack **b,
-    	bool uppr_med_a, bool uppr_med_b);
-		
+void	ft_what_rotation(t_stack **a, t_stack **b,
+			bool uppr_med_a, bool uppr_med_b);
+void	ft_what_rotation_end_of_stack_a(t_stack **a, t_stack **b,
+			bool uppr_med_a, bool uppr_med_b);
 #endif

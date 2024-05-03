@@ -73,8 +73,10 @@ utils:
 	@echo $(DEF_COLOR)
 
 $(DIR_OBJS):
-	@echo Creating directory: $(DIR_OBJS)
+	@echo $(Y)Creating directory: $(DIR_OBJS)
+	@echo Generating obj...
 	mkdir -p $(DIR_OBJS)
+	@echo Objs generated succesfully! $(DEF_COLOR)
 
 $(NAME): $(OBJS) Makefile
 	$(MAKE) utils
@@ -82,14 +84,16 @@ $(NAME): $(OBJS) Makefile
 	@echo $(G)Push_swap compiled successfully! $(DEF_COLOR)
 
 clean:
+	@echo $(GRAY)
 	make -C $(DIR_LIBFT) clean 
 	$(RM) -rf $(OBJS) $(DEPS) $(DIR_OBJS)
-	@echo $(GRAY)Push_swap object files erased succesfully! $(DEF_COLOR)
+	@echo $(G)Push_swap object files erased succesfully! $(DEF_COLOR)
 
 fclean: clean
+	@echo $(GRAY)
 	make -C $(DIR_LIBFT) fclean
 	$(RM) $(NAME)
-	@echo $(GRAY)Push_swap executable files erased succesfully! $(DEF_COLOR)
+	@echo $(G)Push_swap executable files erased succesfully! $(DEF_COLOR)
 	
 re:		fclean all
 	@echo $(G)Erased and recompiled every file of push_swap successfully!	$(DEF_COLOR)
