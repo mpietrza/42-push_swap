@@ -6,7 +6,7 @@
 /*   By: mpietrza <mpietrza@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 17:59:39 by mpietrza          #+#    #+#             */
-/*   Updated: 2024/05/02 17:20:47 by mpietrza         ###   ########.fr       */
+/*   Updated: 2024/05/06 15:06:15 by mpietrza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static void	ft_lower_price_for_rr_or_rrr(t_stack **b, t_stack **a)
 	while (temp_b)
 	{
 		if ((temp_b->is_upper_median == true
-			&& temp_b->push_index < ft_stack_size(a) / 2)
+				&& temp_b->push_index < ft_stack_size(a) / 2)
 			|| (temp_b->is_upper_median == false
 				&& temp_b->push_index >= ft_stack_size(a) / 2))
 			temp_b->push_price = temp_b->push_price * 3 / 4;
@@ -88,7 +88,7 @@ bool	ft_find_cheapest(t_stack **b, t_stack **a)
 {
 	t_stack	*temp_a;
 	t_stack	*cheapest_b;
-	
+
 	temp_a = *a;
 	cheapest_b = NULL;
 	if (!*b || !b || !*a || !a)
